@@ -4,10 +4,10 @@
 <div class="bg-body-light">
     <div class="content content-full">
         <div class="d-flex flex-column flex-sm-row justify-content-sm-between align-items-sm-center">
-            <h1 class="flex-sm-fill font-size-h2 font-w400 mt-2 mb-0 mb-sm-2">Atividade Econômica</h1>
+            <h1 class="flex-sm-fill font-size-h2 font-w400 mt-2 mb-0 mb-sm-2">Municípios</h1>
             <nav class="flex-sm-00-auto ml-sm-3" aria-label="breadcrumb">
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item">Atividade Econômica</li>
+                    <li class="breadcrumb-item">Municípios</li>
                     <li class="breadcrumb-item active" aria-current="page"></li>
                 </ol>
             </nav>
@@ -37,40 +37,36 @@
 
     <div class="block block-rounded">
         <div class="block-content">
-            @if(isset($atividade))
-                <form action="{{route('atividade.update', $atividade->id)}}" method="post">
+            @if(isset($municipio))
+                <form action="{{route('municipio.update', $municipio->id)}}" method="post">
                 <input type="hidden" name="_method" value="put">
             @else
-                <form action="{{route('atividade.store')}}" method="post">
+                <form action="{{route('municipio.store')}}" method="post">
             @endif
 
                 {{ csrf_field() }} 
                 <!-- User Profile -->
                 <h2 class="content-heading pt-0">
-                    <i class="fa fa-fw fa-city-circle text-muted mr-1"></i>Atividade Econômica
+                    <i class="fa fa-fw fa-city-circle text-muted mr-1"></i>Município
                 </h2>
                 <div class="row push">
                     <div class="col-lg-4">
                         <p class="text-muted">
-                            Aqui são as informações importantes para identificação da Atividade Econômica.
+                            Identificação dos Municípios.
                         </p>
                     </div>
                     <div class="col-lg-8 col-xl-5">
                         <div class="form-group">
-                            <label for="nome">Nome da Atividade Econômica</label>
-                            <input type="text" class="form-control" id="nome" name="nome" placeholder="Digite o nome da Atividade Econômica.." value="{{isset($atividade->nome) ? $atividade->nome : '' }}" required>
+                            <label for="nome">Nome do Município</label>
+                            <input type="text" class="form-control" id="nome" name="nome" placeholder="Digite o nome do Município" value="{{isset($municipio->nome) ? $municipio->nome : '' }}" required>
                         </div>
                         <div class="form-group">
-                            <label for="codigo">Codigo</label>
-                            <input type="text" class="form-control" id="codigo" name="codigo" placeholder="" maxlength="10" value="{{isset($atividade->codigo) ? $atividade->codigo : '' }}" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="secao">Seção</label>
-                            <input type="text" class="form-control" id="co_secao" name="co_secao" placeholder="" value="{{isset($atividade->co_secao) ? $atividade->co_secao : '' }}" required> 
+                            <label for="codigo">UF</label>
+                            <input type="text" class="form-control" id="uf" name="uf" placeholder="" maxlength="2" value="{{isset($municipio->uf) ? $municipio->uf : '' }}" required>
                         </div>
                         <div class="form-group">
                             <div class="custom-control custom-switch">
-                            <input type="checkbox" class="custom-control-input" name="ativo" id="ativo"  value="1" {{isset($atividade->ativo) ? 'checked' : ''}}>
+                            <input type="checkbox" class="custom-control-input" name="ativo" id="ativo"  value="1" {{isset($municipio->ativo) ? 'checked' : ''}}>
                             <label class="custom-control-label" for="ativo">Ativo</label>
                             </div>
                         </div>

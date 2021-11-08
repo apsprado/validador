@@ -101,6 +101,16 @@ Route::group(['middleware' => ['auth']], function () {
       Route::delete('/atividade/destroy/{id}', "AtividadeController@destroy")->name('atividade.destroy');
       Route::get('/atividade/InativarAtivarAtividade/{id}', "AtividadeController@InativarAtivarAtividade")->name('atividade.InativarAtivarAtividade');
     
+
+       // MUNICÍPIOS
+       Route::get('/municipio', "MunicipioController@index")->name('municipio.index');
+       Route::get('/municipio/create', "MunicipioController@create")->name('municipio.create');
+       Route::post('/municipio/store', "MunicipioController@store")->name('municipio.store');
+       //Route::get('/municipio/{id}', "MunicipioController@show")->name('municipio.show');
+       Route::get('/municipio/{id}/edit', "MunicipioController@edit")->name('municipio.edit');
+       Route::put('/municipio/{id}/edit', "MunicipioController@update")->name('municipio.update');
+       Route::delete('/municipio/destroy/{id}', "MunicipioController@destroy")->name('municipio.destroy');
+       Route::get('/municipio/InativarAtivarMunicipio/{id}', "MunicipioController@InativarAtivarMunicipio")->name('municipio.InativarAtivarMunicipio');
   
   // FINAL - MÓDULO ADMINISTRATIVO.
 

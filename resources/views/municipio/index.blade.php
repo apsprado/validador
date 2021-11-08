@@ -27,10 +27,10 @@
 <div class="bg-body-light">
     <div class="content content-full">
         <div class="d-flex flex-column flex-sm-row justify-content-sm-between align-items-sm-center">
-            <h1 class="flex-sm-fill font-size-h2 font-w400 mt-2 mb-0 mb-sm-2">Atividade Econômica</h1>
+            <h1 class="flex-sm-fill font-size-h2 font-w400 mt-2 mb-0 mb-sm-2">Municípios</h1>
             <nav class="flex-sm-00-auto ml-sm-3" aria-label="breadcrumb">
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item">Atividade Econômica</li>
+                    <li class="breadcrumb-item">Municípios</li>
                     <li class="breadcrumb-item active" aria-current="page">Listar</li>
                 </ol>
             </nav>
@@ -65,13 +65,13 @@
         </div>
         @endif
 
-    <!-- Todos as Atividades Econômicas -->
+    <!-- Todos os Municípios -->
     <div class="block block-rounded">
         <div class="block-header block-header-default">
-            <h3 class="block-title">Atividade Econômica</h3>
-            <a href="{{route('atividade.create')}}">
+            <h3 class="block-title">Municípios</h3>
+            <a href="{{route('municipio.create')}}">
                 <button type="button" class="btn btn-success mr-1 mb-3">
-                    <i class="fa fa-fw fa-plus mr-1"></i> Nova Atividade
+                    <i class="fa fa-fw fa-plus mr-1"></i> Novo Município
                 </button>
             </a>
         </div>
@@ -81,19 +81,17 @@
                     <tr>
                         <th class="text-center" style="width: 80px;">#</th>
                         <th>Nome</th>
-                        <th>Codigo</th>
-                        <th>Seção</th>
+                        <th>UF</th>
                         <th>Ativo</th>
                         <th style="width: 15%;">Ação</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach($atividade as $key)
+                    @foreach($municipio as $key)
                     <tr>
                         <td>{{$key->id}}</td>
                         <td>{{$key->nome}}</td>
-                        <td>{{$key->codigo}}</td>
-                        <td>{{$key->co_secao}}</td>
+                        <td>{{$key->uf}}</td>
                         <td>
                             @if ($key->ativo == 1)
                             <span style="color: green;">Sim</span>
@@ -102,7 +100,7 @@
                             @endif
                         </td>
                         <td>
-                            <a href="{{route('atividade.edit', $key->id)}}">
+                            <a href="{{route('municipio.edit', $key->id)}}">
                             <button type="button" class="btn btn-sm btn-info" data-toggle="tooltip" data-placement="top" title="Editar" data-original-title="Editar">
                                 <i class="fa fa-pencil-alt"></i>
                             </button>
@@ -110,13 +108,13 @@
                             @if ($key->ativo == 1)
                             <button type="button" class="btn btn-sm btn-danger" data-toggle="tooltip" data-placement="top" title=""
                                 data-original-title="Inativar"
-                                onclick="return AtivarInativarAtividade({{$key->id}})">
+                                onclick="return AtivarInativarMunicipio({{$key->id}})">
                                 <i class="fa fa-circle"></i>
                             </button>
                             @else
                             <button type="button" class="btn btn-sm btn-success" data-toggle="tooltip" data-placement="top" title=""
                                 data-original-title="Ativar"
-                                onclick="return AtivarInativarAtividade({{$key->id}})">
+                                onclick="return AtivarInativarMunicipio({{$key->id}})">
                                 <i class="fa fa-check-circle"></i>
                             </button>
                             @endif
@@ -127,17 +125,17 @@
             </table>
         </div>
     </div>
-    <!-- END Todos as Atividades Econômicas -->
+    <!-- END Todos os Municípios -->
 </div>
 
 
 
 <script>
-    function AtivarInativarAtividade(i) {
+    function AtivarInativarMunicipio(i) {
         //var idK = element.id;
-        var c = confirm('Tem certeza que deseja Ativar ou Inativar a Atividade Econômica?');
+        var c = confirm('Tem certeza que deseja Ativar ou Inativar o Município?');
         if( c == true){
-            var a = "/atividade/InativarAtivarAtividade/"
+            var a = "/municipio/InativarAtivarMunicipio/"
             var b = i
             window.location.href = a.concat(b)
         }

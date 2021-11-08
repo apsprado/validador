@@ -109,45 +109,70 @@
                                 </ul>
                             </li>
                             <li class="nav-main-heading">ADMINISTRATIVO</li>
-                            <li class="nav-main-item">
-                                <a class="nav-main-link" href="/orgao">
-                                    <i class="nav-main-link-icon fa fa-globe"></i>
-                                    <span class="nav-main-link-name">Cadastro de Orgão</span>
-                                </a>
-                            </li>
-                            <li class="nav-main-item">
-                                <a class="nav-main-link" href="/atividade">
-                                    <i class="nav-main-link-icon fa fa-globe"></i>
-                                    <span class="nav-main-link-name">Atividades Econômicas</span>
-                                </a>
-                            </li>
-                            @if (in_array('autorizacao/permissao', Session::get('permissoes.nomes')))
-                            <li class="nav-main-item">
-                                <a class="nav-main-link" href="/autorizacao/permissao">
-                                    <i class="nav-main-link-icon fa fa-list-alt"></i>
-                                    <span class="nav-main-link-name">Permissões</span>
-                                </a>
-                            </li>
-                            @else
-                            @endif
-                            @if (in_array('autorizacao/grupos', Session::get('permissoes.nomes')))
-                            <li class="nav-main-item">
-                                <a class="nav-main-link" href="/autorizacao/grupos">
-                                    <i class="nav-main-link-icon fa fa-file-alt"></i>
-                                    <span class="nav-main-link-name">Grupos de Usuários</span>
-                                </a>
-                            </li>    
-                            @else
-                            @endif
-                            @if (in_array('usuarios/listar', Session::get('permissoes.nomes')))
-                            <li class="nav-main-item">
-                                <a class="nav-main-link" href="/usuarios/listar">
-                                    <i class="nav-main-link-icon fa fa-user-circle"></i>
-                                    <span class="nav-main-link-name">Cadastro de Usuários</span>
-                                </a>    
-                            </li>
-                            @else
-                            @endif
+                                <li class="nav-main-item">
+                                    <a class="nav-main-link" href="/orgao">
+                                        <i class="nav-main-link-icon fa fa-warehouse"></i>
+                                        <span class="nav-main-link-name">Cadastro de Orgão</span>
+                                    </a>
+                                </li>
+                                <li class="nav-main-item">
+                                    <a class="nav-main-link" href="/atividade">
+                                        <i class="nav-main-link-icon fa fa-file-alt"></i>
+                                        <span class="nav-main-link-name">Atividades Econômicas</span>
+                                    </a>
+                                </li>
+                                <li class="nav-main-item">
+                                    <a class="nav-main-link" href="/municipio">
+                                        <i class="nav-main-link-icon fa fa-map-marked-alt"></i>
+                                        <span class="nav-main-link-name">Cadastro de Municípios</span>
+                                    </a>
+                                </li>
+                                @if (in_array('autorizacao/permissao', Session::get('permissoes.nomes')))
+                                <li class="nav-main-item">
+                                    <a class="nav-main-link" href="/autorizacao/permissao">
+                                        <i class="nav-main-link-icon fa fa-list-alt"></i>
+                                        <span class="nav-main-link-name">Permissões</span>
+                                    </a>
+                                </li>
+                                @else
+                                @endif
+                                @if (in_array('autorizacao/grupos', Session::get('permissoes.nomes')))
+                                <li class="nav-main-item">
+                                    <a class="nav-main-link" href="/autorizacao/grupos">
+                                        <i class="nav-main-link-icon fa fa-user-friends"></i>
+                                        <span class="nav-main-link-name">Grupos de Usuários</span>
+                                    </a>
+                                </li>    
+                                @else
+                                @endif
+                                @if (in_array('usuarios/listar', Session::get('permissoes.nomes')))
+                                <li class="nav-main-item">
+                                    <a class="nav-main-link" href="/usuarios/listar">
+                                        <i class="nav-main-link-icon fa fa-user-circle"></i>
+                                        <span class="nav-main-link-name">Cadastro de Usuários</span>
+                                    </a>    
+                                </li>
+                                @else
+                                @endif
+                                <li class="nav-main-heading">LOGS</li>
+                                    <li class="nav-main-item">
+                                        <a class="nav-main-link" href="/orgao">
+                                            <i class="nav-main-link-icon fa fa-globe"></i>
+                                            <span class="nav-main-link-name">Conveniados Log</span>
+                                        </a>
+                                    </li>
+                                    <li class="nav-main-item">
+                                        <a class="nav-main-link" href="/orgao">
+                                            <i class="nav-main-link-icon fa fa-globe"></i>
+                                            <span class="nav-main-link-name">Consultas Log</span>
+                                        </a>
+                                    </li>
+                                    <li class="nav-main-item">
+                                        <a class="nav-main-link" href="/orgao">
+                                            <i class="nav-main-link-icon fa fa-globe"></i>
+                                            <span class="nav-main-link-name">Downloads Log</span>
+                                        </a>
+                                    </li>
                         </ul>
                     </div>
                     <!-- END Side Navigation -->
