@@ -111,7 +111,28 @@ Route::group(['middleware' => ['auth']], function () {
        Route::put('/municipio/{id}/edit', "MunicipioController@update")->name('municipio.update');
        Route::delete('/municipio/destroy/{id}', "MunicipioController@destroy")->name('municipio.destroy');
        Route::get('/municipio/InativarAtivarMunicipio/{id}', "MunicipioController@InativarAtivarMunicipio")->name('municipio.InativarAtivarMunicipio');
+
+
+        // NATUREZA JURIDICA
+        Route::get('/natureza_juridica', "NaturezaJuridicaController@index")->name('natureza_juridica.index');
+        Route::get('/natureza_juridica/create', "NaturezaJuridicaController@create")->name('natureza_juridica.create');
+        Route::post('/natureza_juridica/store', "NaturezaJuridicaController@store")->name('natureza_juridica.store');
+        //Route::get('/natureza_juridica/{id}', "NaturezaJuridicaController@show")->name('natureza_juridica.show');
+        Route::get('/natureza_juridica/{id}/edit', "NaturezaJuridicaController@edit")->name('natureza_juridica.edit');
+        Route::put('/natureza_juridica/{id}/edit', "NaturezaJuridicaController@update")->name('natureza_juridica.update');
+        Route::delete('/natureza_juridica/destroy/{id}', "NaturezaJuridicaController@destroy")->name('natureza_juridica.destroy');
+        Route::get('/natureza_juridica/InativarAtivarNaturezaJuridica/{id}', "NaturezaJuridicaController@InativarAtivarNaturezaJuridica")->name('natureza_juridica.InativarAtivarNaturezaJuridica');
   
+
+         // VALIDADOR DE URL
+         Route::get('/validador', "ValidadorController@index")->name('validador.index');
+         Route::get('/validador/create', "ValidadorController@create")->name('validador.create');
+         Route::post('/validador/store', "ValidadorController@store")->name('validador.store');
+         Route::get('/validador/{id}', "ValidadorController@show")->name('validador.show');
+         Route::get('/validador/{id}/edit', "ValidadorController@edit")->name('validador.edit');
+         Route::put('/validador/{id}/edit', "ValidadorController@update")->name('validador.update');
+         Route::get('/validador/destroy/{id}', "ValidadorController@destroy")->name('validador.destroy');
+        
   // FINAL - MÓDULO ADMINISTRATIVO.
 
 

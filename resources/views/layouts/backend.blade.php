@@ -4,10 +4,10 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
 
-        <title>JUCESE CONVENIADOS</title>
+        <title>XPTO - Validador de URLs</title>
 
-        <meta name="description" content="JUCESE CONVENIADOS">
-        <meta name="author" content="Andrius Prado, Mateus Araujo">
+        <meta name="description" content="XPTO - Validador de URLs">
+        <meta name="author" content="Andrius Prado">
         <meta name="robots" content="noindex, nofollow">
 
         <!-- CSRF Token -->
@@ -42,10 +42,10 @@
                         <!-- Logo -->
                         <a class="font-w600 text-white tracking-wide" href="/">
                             <span class="smini-visible">
-                                C<span class="opacity-75">V</span>
+                                XP<span class="opacity-75">TO</span>
                             </span>
                             <span class="smini-hidden">
-                                CONV<span class="opacity-75">ENIADOS</span>
+                                XPTO<span class="opacity-75">VALIDADOR DE URLs</span>
                             </span>
                         </a>
                         <!-- END Logo -->
@@ -109,6 +109,12 @@
                                 </ul>
                             </li>
                             <li class="nav-main-heading">ADMINISTRATIVO</li>
+                                <li class="nav-main-item">
+                                    <a class="nav-main-link" href="/validador">
+                                        <i class="nav-main-link-icon fa fa-list-alt"></i>
+                                        <span class="nav-main-link-name">Cadastro de URLs</span>
+                                    </a>
+                                </li>
                                 <li class="nav-main-item">
                                     <a class="nav-main-link" href="/orgao">
                                         <i class="nav-main-link-icon fa fa-warehouse"></i>

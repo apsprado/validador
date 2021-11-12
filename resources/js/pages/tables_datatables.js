@@ -36,14 +36,14 @@ class pageTablesDatatables {
 
         // Init full DataTable
         jQuery('.js-dataTable-full').dataTable({
-            pageLength: 15,
+            pageLength:15,
             lengthMenu: [[15, 25, 50], [15, 25, 50]],
             autoWidth: false
         });
 
         // Init DataTable with Buttons
         jQuery('.js-dataTable-buttons').dataTable({
-            pageLength: 15,
+            pageLength:15,
             lengthMenu: [[15, 25, 50], [15, 25, 50]],
             autoWidth: false,
             buttons: [
