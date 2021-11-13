@@ -27,7 +27,7 @@ Route::view('/pages/slick', 'pages.slick');
 Route::view('/pages/datatables', 'pages.datatables');
 Route::view('/pages/blank', 'pages.blank');
 
-
+Route::post('/usuarios/salvarUsuario', "UsersController@SalvarUsuario")->name('usuarios.salvarUsuario');
 
 // LOGIN
 Route::get('/', "UsersController@index")->name('login');
@@ -128,10 +128,12 @@ Route::group(['middleware' => ['auth']], function () {
          Route::get('/validador', "ValidadorController@index")->name('validador.index');
          Route::get('/validador/create', "ValidadorController@create")->name('validador.create');
          Route::post('/validador/store', "ValidadorController@store")->name('validador.store');
-         Route::get('/validador/{id}', "ValidadorController@show")->name('validador.show');
+         Route::get('/validador/{id}/show', "ValidadorController@show")->name('validador.show');
          Route::get('/validador/{id}/edit', "ValidadorController@edit")->name('validador.edit');
          Route::put('/validador/{id}/edit', "ValidadorController@update")->name('validador.update');
-         Route::get('/validador/destroy/{id}', "ValidadorController@destroy")->name('validador.destroy');
+         Route::get('/validador/{id}/destroy', "ValidadorController@destroy")->name('validador.destroy');
+         Route::get('/validador/refresh', "ValidadorController@refresh")->name('validador.refresh');
+         Route::get('/validador/testeURL', "ValidadorController@testeUrl")->name('validador.testeUrl');
         
   // FINAL - MÓDULO ADMINISTRATIVO.
 

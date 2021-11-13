@@ -15,6 +15,7 @@
         <script src="{{ asset('js/plugins/datatables/buttons/buttons.html5.min.js') }}"></script>
         <script src="{{ asset('js/plugins/datatables/buttons/buttons.flash.min.js') }}"></script>
         <script src="{{ asset('js/plugins/datatables/buttons/buttons.colVis.min.js') }}"></script>
+        <script src="{{ asset('js/plugins/refresh/refresh.js') }}"></script>
 
         <!-- Page JS Code -->
         <script src="{{ asset('js/pages/tables_datatables.js') }}"></script>
@@ -69,11 +70,15 @@
     <div class="block block-rounded">
         <div class="block-header block-header-default">
             <h3 class="block-title">URLs Cadastradas</h3>
+                <button type="button" id="btn" class="btn btn-info mr-1 mb-3">
+                    <i class="fa fa-fw fa-plus mr-1"></i> Atualizar
+                </button>
             <a href="{{route('validador.create')}}">
                 <button type="button" class="btn btn-success mr-1 mb-3">
                     <i class="fa fa-fw fa-plus mr-1"></i> Novo
                 </button>
             </a>
+
         </div>
         <div class="block-content block-content-full">
                <table class="table table-bordered table-striped table-vcenter js-dataTable-full">
@@ -83,6 +88,7 @@
                         <th>Nome</th>
                         <th>URL</th>
                         <th>Status</th>
+                        <th>Resposta</th>
                         <th>Ultima Verificação</th>
                         <th style="width: 15%;">Ação</th>
                     </tr>
@@ -93,8 +99,9 @@
                         <td>{{$key->id}}</td>
                         <td>{{$key->nome}}</td>
                         <td>{{$key->url}}</td>
-                        <td>{{$key->status_code}}</td>
-                        <td>{{$key->resposta}}</td>
+                        <td>{{$key->status->status}}</td>
+                        <td>{{$key->status->status_description}}</td>
+                        <td>{{$key->url_verified_at}}</td>
                         <td>
                             <a href="{{route('validador.show', $key->id)}}">
                             <button type="button" class="btn btn-sm btn-info" data-toggle="tooltip" data-placement="top" title="Visualizar" data-original-title="Visualizar">

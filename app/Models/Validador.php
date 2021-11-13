@@ -12,4 +12,11 @@ class Validador extends Model
     protected $primaryKey = 'id';
     protected $fillable = ['nome', 'url', 'status_code', 'resposta', 'url_verified_at', 'user_id'];
     public $timestamps = true;
+
+
+
+    public function status()
+    {
+        return $this->hasOne('App\Models\Status', 'status', 'status_code');
+    }
 }

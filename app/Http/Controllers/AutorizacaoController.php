@@ -166,9 +166,6 @@ class AutorizacaoController extends Controller
 
         return redirect()->back()->with('delete', 'Permissão deletada.');
     }
-
-
-
    
 
 }

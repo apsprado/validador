@@ -563,5 +563,20 @@ class UsersController extends Controller
     }
 
 
+
+	public function SalvarUsuario(Request $r)
+	{
+		
+        $credenciais = [
+            'name' => $r->input('nome'),
+            'email' => $r->input('email'),
+            'password' => bcrypt($r->Password),
+        ];
+
+        User::create($credenciais);
+		return back()->with('sucesso', 'Usuario cadastrado com sucesso...');
+	}
+
+
     
 }

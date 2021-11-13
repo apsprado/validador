@@ -61,7 +61,7 @@
                         </div>
                         <div class="form-group">
                             <label for="url">Resposta</label>
-                            <input type="text" class="form-control" id="resposta" name="resposta" value="{{isset($validador->resposta) ? $validador->resposta : '' }}" readonly>
+                            <input type="text" class="form-control" id="resposta" name="resposta" value="{{isset($validador->status->status_description) ? $validador->status->status_description : '' }}" readonly>
                         </div>
                         <div class="form-group">
                             <label for="url">Data Última Verificação</label>

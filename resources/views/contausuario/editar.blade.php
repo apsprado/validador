@@ -28,7 +28,6 @@
                     @endif
                 </a>
                 <h1 class="font-w700 my-2 text-white">{{$user->name}}</h1>
-                <h2 class="h4 font-w700 text-white-75"> {{$user->grupo->nome}}</h2>
             </div>
         </div>
     </div>
@@ -76,14 +75,6 @@
                         <div class="form-group">
                             <label for="dm-profile-edit-name">Nome</label>
                             <input type="text" class="form-control" id="Nome" name="nome" placeholder="Digite seu Nome.." value="{{$user->name}}">
-                        </div>
-                        <div class="form-group">
-                            <label for="dm-profile-edit-job-title">Grupo</label>
-                            <input type="text" class="form-control" id="Grupocad" name="grupocad" placeholder="Escolha seu grupo.." value="{{$user->grupo->nome}}" disabled> 
-                        </div>
-                        <div class="form-group">
-                            <label for="dm-profile-edit-company">Orgão</label>
-                            <input type="text" class="form-control" id="dm-profile-edit-company" name="dm-profile-edit-company" value="{{$user->orgao->nome_orgao}}" readonly>
                         </div>
                         <div class="form-group">
                             <label>Sua Foto</label>

@@ -45,7 +45,7 @@
                                 XP<span class="opacity-75">TO</span>
                             </span>
                             <span class="smini-hidden">
-                                XPTO<span class="opacity-75">VALIDADOR DE URLs</span>
+                                <span class="opacity-75">VALIDADOR DE URLs</span>
                             </span>
                         </a>
                         <!-- END Logo -->
@@ -77,37 +77,6 @@
                 <!-- Side Navigation -->
                     <div class="content-side content-side-full">
                         <ul class="nav-main">
-                            <li class="nav-main-item">
-                                <a class="nav-main-link{{ request()->is('dashboard') ? ' active' : '' }}" href="/dashboard">
-                                    <i class="nav-main-link-icon fa fa-location-arrow"></i>
-                                    <span class="nav-main-link-name">Dashboard</span>
-                                    <span class="nav-main-link-badge badge badge-pill badge-success">5</span>
-                                </a>
-                            </li>
-                            <li class="nav-main-heading">Various</li>
-                            <li class="nav-main-item{{ request()->is('pages/*') ? ' open' : '' }}">
-                                <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true" aria-expanded="true" href="#">
-                                    <i class="nav-main-link-icon fa fa-lightbulb"></i>
-                                    <span class="nav-main-link-name">Examples</span>
-                                </a>
-                                <ul class="nav-main-submenu">
-                                    <li class="nav-main-item">
-                                        <a class="nav-main-link{{ request()->is('pages/datatables') ? ' active' : '' }}" href="/pages/datatables">
-                                            <span class="nav-main-link-name">DataTables</span>
-                                        </a>
-                                    </li>
-                                    <li class="nav-main-item">
-                                        <a class="nav-main-link{{ request()->is('pages/slick') ? ' active' : '' }}" href="/pages/slick">
-                                            <span class="nav-main-link-name">Slick Slider</span>
-                                        </a>
-                                    </li>
-                                    <li class="nav-main-item">
-                                        <a class="nav-main-link{{ request()->is('pages/blank') ? ' active' : '' }}" href="/pages/blank">
-                                            <span class="nav-main-link-name">Blank</span>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </li>
                             <li class="nav-main-heading">ADMINISTRATIVO</li>
                                 <li class="nav-main-item">
                                     <a class="nav-main-link" href="/validador">
@@ -115,70 +84,6 @@
                                         <span class="nav-main-link-name">Cadastro de URLs</span>
                                     </a>
                                 </li>
-                                <li class="nav-main-item">
-                                    <a class="nav-main-link" href="/orgao">
-                                        <i class="nav-main-link-icon fa fa-warehouse"></i>
-                                        <span class="nav-main-link-name">Cadastro de Orgão</span>
-                                    </a>
-                                </li>
-                                <li class="nav-main-item">
-                                    <a class="nav-main-link" href="/atividade">
-                                        <i class="nav-main-link-icon fa fa-file-alt"></i>
-                                        <span class="nav-main-link-name">Atividades Econômicas</span>
-                                    </a>
-                                </li>
-                                <li class="nav-main-item">
-                                    <a class="nav-main-link" href="/municipio">
-                                        <i class="nav-main-link-icon fa fa-map-marked-alt"></i>
-                                        <span class="nav-main-link-name">Cadastro de Municípios</span>
-                                    </a>
-                                </li>
-                                @if (in_array('autorizacao/permissao', Session::get('permissoes.nomes')))
-                                <li class="nav-main-item">
-                                    <a class="nav-main-link" href="/autorizacao/permissao">
-                                        <i class="nav-main-link-icon fa fa-list-alt"></i>
-                                        <span class="nav-main-link-name">Permissões</span>
-                                    </a>
-                                </li>
-                                @else
-                                @endif
-                                @if (in_array('autorizacao/grupos', Session::get('permissoes.nomes')))
-                                <li class="nav-main-item">
-                                    <a class="nav-main-link" href="/autorizacao/grupos">
-                                        <i class="nav-main-link-icon fa fa-user-friends"></i>
-                                        <span class="nav-main-link-name">Grupos de Usuários</span>
-                                    </a>
-                                </li>    
-                                @else
-                                @endif
-                                @if (in_array('usuarios/listar', Session::get('permissoes.nomes')))
-                                <li class="nav-main-item">
-                                    <a class="nav-main-link" href="/usuarios/listar">
-                                        <i class="nav-main-link-icon fa fa-user-circle"></i>
-                                        <span class="nav-main-link-name">Cadastro de Usuários</span>
-                                    </a>    
-                                </li>
-                                @else
-                                @endif
-                                <li class="nav-main-heading">LOGS</li>
-                                    <li class="nav-main-item">
-                                        <a class="nav-main-link" href="/orgao">
-                                            <i class="nav-main-link-icon fa fa-globe"></i>
-                                            <span class="nav-main-link-name">Conveniados Log</span>
-                                        </a>
-                                    </li>
-                                    <li class="nav-main-item">
-                                        <a class="nav-main-link" href="/orgao">
-                                            <i class="nav-main-link-icon fa fa-globe"></i>
-                                            <span class="nav-main-link-name">Consultas Log</span>
-                                        </a>
-                                    </li>
-                                    <li class="nav-main-item">
-                                        <a class="nav-main-link" href="/orgao">
-                                            <i class="nav-main-link-icon fa fa-globe"></i>
-                                            <span class="nav-main-link-name">Downloads Log</span>
-                                        </a>
-                                    </li>
                         </ul>
                     </div>
                     <!-- END Side Navigation -->
@@ -242,83 +147,6 @@
                             </div>
                         </div>
                         <!-- END User Dropdown -->
-
-                        <!-- Notifications Dropdown -->
-                        <div class="dropdown d-inline-block">
-                            <button type="button" class="btn btn-dual" id="page-header-notifications-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i class="fa fa-fw fa-bell"></i>
-                                <span class="badge badge-secondary badge-pill">5</span>
-                            </button>
-                            <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right p-0" aria-labelledby="page-header-notifications-dropdown">
-                                <div class="bg-primary-darker rounded-top font-w600 text-white text-center p-3">
-                                   Notifications
-                                </div>
-                                <ul class="nav-items my-2">
-                                    <li>
-                                        <a class="text-dark media py-2" href="javascript:void(0)">
-                                            <div class="mx-3">
-                                                <i class="fa fa-fw fa-check-circle text-success"></i>
-                                            </div>
-                                            <div class="media-body font-size-sm pr-2">
-                                                <div class="font-w600">App was updated to v5.6!</div>
-                                                <div class="text-muted font-italic">3 min ago</div>
-                                            </div>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a class="text-dark media py-2" href="javascript:void(0)">
-                                            <div class="mx-3">
-                                                <i class="fa fa-fw fa-user-plus text-info"></i>
-                                            </div>
-                                            <div class="media-body font-size-sm pr-2">
-                                                <div class="font-w600">New Subscriber was added! You now have 2580!</div>
-                                                <div class="text-muted font-italic">10 min ago</div>
-                                            </div>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a class="text-dark media py-2" href="javascript:void(0)">
-                                            <div class="mx-3">
-                                                <i class="fa fa-fw fa-times-circle text-danger"></i>
-                                            </div>
-                                            <div class="media-body font-size-sm pr-2">
-                                                <div class="font-w600">Server backup failed to complete!</div>
-                                                <div class="text-muted font-italic">30 min ago</div>
-                                            </div>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a class="text-dark media py-2" href="javascript:void(0)">
-                                            <div class="mx-3">
-                                                <i class="fa fa-fw fa-exclamation-circle text-warning"></i>
-                                            </div>
-                                            <div class="media-body font-size-sm pr-2">
-                                                <div class="font-w600">You are running out of space. Please consider upgrading your plan.</div>
-                                                <div class="text-muted font-italic">1 hour ago</div>
-                                            </div>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a class="text-dark media py-2" href="javascript:void(0)">
-                                            <div class="mx-3">
-                                                <i class="fa fa-fw fa-plus-circle text-primary"></i>
-                                            </div>
-                                            <div class="media-body font-size-sm pr-2">
-                                                <div class="font-w600">New Sale! + $30</div>
-                                                <div class="text-muted font-italic">2 hours ago</div>
-                                            </div>
-                                        </a>
-                                    </li>
-                                </ul>
-                                <div class="p-2 border-top">
-                                    <a class="btn btn-light btn-block text-center" href="javascript:void(0)">
-                                        <i class="fa fa-fw fa-eye mr-1"></i> View All
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- END Notifications Dropdown -->
-
                     </div>
                     <!-- END Right Section -->
                 </div>
@@ -350,10 +178,10 @@
                 <div class="content py-0">
                     <div class="row font-size-sm">
                         <div class="col-sm-6 order-sm-2 mb-1 mb-sm-0 text-center text-sm-right">
-                           Junta Comercial do Estado de Sergipe <i class="fa fa-heart text-danger"></i>
+                           Feito com Laravel... <i class="fa fa-heart text-danger"></i>
                         </div>
                         <div class="col-sm-6 order-sm-1 text-center text-sm-left">
-                            <a class="font-w600" href="https://www.jucese.se.gov.br" target="_blank">JUCESE CONVENIADOS</a> &copy; <span data-toggle="year-copy"></span>
+                            <a class="font-w600" href="mailto:andriusprado@yahoo.com.br" target="_blank">Andrius Prado</a> &copy; <span data-toggle="year-copy"></span>
                         </div>
                     </div>
                 </div>
