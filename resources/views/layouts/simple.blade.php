@@ -6,10 +6,9 @@
 
         <title>XPTO - Validador de URLs</title>
 
-        <meta name="description" content="JUCESE CONVENIADOS">
-        <meta name="author" content="Andrius Prado, Mateus Araujo">
+        <meta name="description" content="XPTO - Validador de URLs">
+        <meta name="author" content="Andrius Prado">
         <meta name="robots" content="noindex, nofollow">
-
         <!-- CSRF Token -->
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
