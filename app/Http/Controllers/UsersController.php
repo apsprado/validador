@@ -9,12 +9,8 @@ use Auth;
 use Illuminate\Support\Facades\File;
 use Route;
 use App\Models\User;
-use App\Models\Gruposuser;
 use App\Models\Permissao;
-use App\Models\Permissaogrupo;
-use App\Models\Setor;
 use App\Models\ConveniadosLog;
-use App\Models\Orgao;
 use DB;
 use Exception;
 use Illuminate\Support\Facades\Log;
@@ -167,9 +163,7 @@ class UsersController extends Controller
 		try
 		{
 
-			$grupo = Gruposuser::all();
-			$setor = Setor::all();
-			$orgao = Orgao::where('ativo', 1)->get();
+			
 			
 			Log::info('Acesso:  usuarios.cadastrar - ', ['user_id' => Auth::user()->id, 'nome' => Auth::user()->name]);
 			
@@ -180,7 +174,7 @@ class UsersController extends Controller
 					'user_id' => Auth::user()->id
 				]);	
 
-			return view('usuarios.cadastrar', compact('grupo', 'setor', 'orgao'));
+			return view('usuarios.cadastrar');
 		
 		}
 		catch (\Exception $e)
@@ -290,10 +284,7 @@ class UsersController extends Controller
 		try
 		{
 			$user = User::find($id);
-			$grupo = Gruposuser::where('id', '!=', $user->grupoid)->get();
-			$setor = Setor::where('id', '!=', $user->setor_id)->get();
-			$orgao = Orgao::where('id', '!=', $user->orgaoid)->get();
-						
+									
 						
 			Log::info('Acesso:  usuarios.editar - ', ['user_id' => Auth::user()->id, 'nome' => Auth::user()->name]);
 			
@@ -304,7 +295,7 @@ class UsersController extends Controller
 					'user_id' => Auth::user()->id
 				]);	
 
-			return view('usuarios.editar', compact('user', 'grupo', 'setor', 'orgao'));
+			return view('usuarios.editar', compact('user'));
 		
 		}
 		catch (\Exception $e)

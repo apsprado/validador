@@ -75,10 +75,6 @@
                         <th class="text-center" style="width: 80px;">#</th>
                         <th>Nome</th>
                         <th>Email</th>
-                        <th>Ramal</th>
-                        <th>Orgao</th>
-                        <th>Cargo</th>
-                        <th>Grupo</th>
                         <th>Ativo</th>
                         <th style="width: 15%;">Ação</th>
                     </tr>
@@ -89,10 +85,6 @@
                         <td>{{$key->id}}</td>
                         <td>{{$key->name}}</td>
                         <td>{{$key->email}}</td>
-                        <td>{{$key->ramal}}</td>
-                        <td>{{$key->orgao->nome_orgao}}</td>
-                        <td>{{$key->cargo}}</td>
-                        <td>{{$key->grupo->nome}}</td>
                         <td>
                             @if ($key->ativo == 1)
                             <span style="color: green;">Sim</span>

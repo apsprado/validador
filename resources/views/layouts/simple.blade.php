@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
 
-        <title>JUCESE CONVENIADOS</title>
+        <title>XPTO - Validador de URLs</title>
 
         <meta name="description" content="JUCESE CONVENIADOS">
         <meta name="author" content="Andrius Prado, Mateus Araujo">

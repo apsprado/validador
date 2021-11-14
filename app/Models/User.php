@@ -41,22 +41,7 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function grupo()
-    {
-        return $this->hasOne('App\Models\Gruposuser', 'id', 'grupoid');
-    }
-
-    public function setor()
-    {
-        return $this->hasOne('App\Models\Setor', 'id', 'setor_id');
-
-    }
-
-    public function orgao()
-    {
-        return $this->hasOne('App\Models\Orgao', 'id', 'orgaoid');
-
-    }
+  
 
     
 
