@@ -16,6 +16,7 @@
         <script src="{{ asset('js/plugins/datatables/buttons/buttons.flash.min.js') }}"></script>
         <script src="{{ asset('js/plugins/datatables/buttons/buttons.colVis.min.js') }}"></script>
         <script src="{{ asset('js/plugins/refresh/refresh.js') }}"></script>
+        <script src="https://cdn.datatables.net/plug-ins/1.11.3/api/fnReloadAjax.js"></script>
 
         <!-- Page JS Code -->
         <script src="{{ asset('js/pages/tables_datatables.js') }}"></script>
@@ -80,7 +81,7 @@
             </a>
 
         </div>
-        <div class="block-content block-content-full">
+        <div class="block-content block-content-full" id="some_div"> 
                <table class="table table-bordered table-striped table-vcenter js-dataTable-full">
                 <thead>
                     <tr>

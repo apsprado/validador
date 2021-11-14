@@ -325,8 +325,9 @@ class ValidadorController extends Controller
 	public function refresh()
 	{
 		$validador = Validador::where('user_id', Auth::user()->id)->get();
-		echo json_encode($validador);
-		return;
+		// $json = json_encode($validador);
+		// return response()->json($json);
+		return view('validador.tbody', compact('validador'));
 	}
 
 }
