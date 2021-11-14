@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.0.1
+-- version 5.1.0
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 12-Nov-2021 às 17:07
--- Versão do servidor: 10.4.6-MariaDB
--- versão do PHP: 7.3.8
+-- Tempo de geração: 14-Nov-2021 às 02:06
+-- Versão do servidor: 10.4.19-MariaDB
+-- versão do PHP: 8.0.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -21,54 +20,6 @@ SET time_zone = "+00:00";
 --
 -- Banco de dados: `validador_url`
 --
-
--- --------------------------------------------------------
-
---
--- Estrutura da tabela `atividades`
---
-
-CREATE TABLE `atividades` (
-  `id` int(11) NOT NULL,
-  `nome` varchar(255) NOT NULL,
-  `codigo` varchar(10) NOT NULL,
-  `co_secao` varchar(10) DEFAULT NULL,
-  `ativo` int(10) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Extraindo dados da tabela `atividades`
---
-
-INSERT INTO `atividades` (`id`, `nome`, `codigo`, `co_secao`, `ativo`) VALUES
-(1, 'FABRICAÇÃO DE CELULOSE, PAPEL E PRODUTOS DE PAPEL', '17', 'C', 1);
-
--- --------------------------------------------------------
-
---
--- Estrutura da tabela `atividades_permissao`
---
-
-CREATE TABLE `atividades_permissao` (
-  `id` int(11) NOT NULL,
-  `atividade_id` int(11) NOT NULL,
-  `orgao_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
-
---
--- Estrutura da tabela `consultas_log`
---
-
-CREATE TABLE `consultas_log` (
-  `id` int(11) NOT NULL,
-  `nire` int(11) NOT NULL,
-  `nome_empresa` varchar(255) NOT NULL,
-  `municipio` varchar(255) NOT NULL,
-  `data` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
-  `user_id` bigint(20) UNSIGNED NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -444,23 +395,208 @@ INSERT INTO `conveniados_logs` (`id`, `local`, `conteudo`, `operacao`, `user_id`
 (349, 'Acesso: validador.show', '{\"id\":3,\"nome\":\"JUCESE\",\"url\":\"http:\\/\\/172.23.22.158\\/novosga\\/public\",\"status_code\":null,\"resposta\":null,\"url_verified_at\":null,\"user_id\":2,\"created_at\":\"2021-11-12T15:19:22.000000Z\",\"updated_at\":\"2021-11-12T15:19:22.000000Z\"}', 'show', 2, '2021-11-12 18:58:03', '2021-11-12 18:58:03'),
 (350, 'Acesso: validador.edit', '{\"id\":3,\"nome\":\"JUCESE\",\"url\":\"http:\\/\\/172.23.22.158\\/novosga\\/public\",\"status_code\":null,\"resposta\":null,\"url_verified_at\":null,\"user_id\":2,\"created_at\":\"2021-11-12T15:19:22.000000Z\",\"updated_at\":\"2021-11-12T15:19:22.000000Z\"}', 'edit', 2, '2021-11-12 18:58:11', '2021-11-12 18:58:11'),
 (351, 'Acesso: validador.edit', '{\"id\":3,\"nome\":\"JUCESE\",\"url\":\"http:\\/\\/172.23.22.158\\/novosga\\/public\",\"status_code\":null,\"resposta\":null,\"url_verified_at\":null,\"user_id\":2,\"created_at\":\"2021-11-12T15:19:22.000000Z\",\"updated_at\":\"2021-11-12T15:19:22.000000Z\"}', 'edit', 2, '2021-11-12 18:58:30', '2021-11-12 18:58:30'),
-(352, 'Acesso: validador.create', 'Cadastro de URL', 'create', 2, '2021-11-12 18:58:38', '2021-11-12 18:58:38');
-
--- --------------------------------------------------------
-
---
--- Estrutura da tabela `download_log`
---
-
-CREATE TABLE `download_log` (
-  `id` int(11) NOT NULL,
-  `nire` varchar(11) NOT NULL,
-  `arquivamento` varchar(11) NOT NULL,
-  `nome_empresa` varchar(255) NOT NULL,
-  `data` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
-  `user_id` bigint(20) NOT NULL,
-  `orgao_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+(352, 'Acesso: validador.create', 'Cadastro de URL', 'create', 2, '2021-11-12 18:58:38', '2021-11-12 18:58:38'),
+(353, 'Acesso: /contausuario', 'acesso ao sistema', 'login', 1, '2021-11-12 21:08:34', '2021-11-12 21:08:34'),
+(354, 'Acesso: validador.index', '[{\"id\":2,\"nome\":\"JUCESE\",\"url\":\"https:\\/\\/www.jucese.se.gov.br\\/\",\"status_code\":null,\"resposta\":null,\"url_verified_at\":null,\"user_id\":1,\"created_at\":\"2021-11-12T15:18:05.000000Z\",\"updated_at\":\"2021-11-12T15:18:05.000000Z\"}]', 'index', 1, '2021-11-12 21:08:37', '2021-11-12 21:08:37'),
+(355, 'Acesso: orgao', '[{\"id\":1,\"nome_orgao\":\"Junta Comercial do Estado de Sergipe\",\"sigla_orgao\":\"JUCESE\",\"cnpj\":null,\"responsavel\":\"Marco Freitas\",\"email\":\"marco.freitas@jucese.se.gov.br\",\"telefone\":\"7932344101\",\"ativo\":1},{\"id\":2,\"nome_orgao\":\"Teste de Org\\u00e3o\",\"sigla_orgao\":\"Teste 4\",\"cnpj\":\"11.111.111\\/1111-11\",\"responsavel\":\"MAMSMDM\",\"email\":\"andrius.prado@jucese.se.gov.br\",\"telefone\":\"79998725724\",\"ativo\":0}]', 'index', 1, '2021-11-12 21:08:40', '2021-11-12 21:08:40'),
+(356, 'Acesso: validador.index', '[{\"id\":2,\"nome\":\"JUCESE\",\"url\":\"https:\\/\\/www.jucese.se.gov.br\\/\",\"status_code\":null,\"resposta\":null,\"url_verified_at\":null,\"user_id\":1,\"created_at\":\"2021-11-12T15:18:05.000000Z\",\"updated_at\":\"2021-11-12T15:18:05.000000Z\"}]', 'index', 1, '2021-11-12 21:08:42', '2021-11-12 21:08:42'),
+(357, 'Acesso: validador.index', '[{\"id\":2,\"nome\":\"JUCESE\",\"url\":\"https:\\/\\/www.jucese.se.gov.br\\/\",\"status_code\":null,\"resposta\":null,\"url_verified_at\":null,\"user_id\":1,\"created_at\":\"2021-11-12T15:18:05.000000Z\",\"updated_at\":\"2021-11-12T15:18:05.000000Z\"}]', 'index', 1, '2021-11-12 21:08:59', '2021-11-12 21:08:59'),
+(358, 'Acesso: validador.index', '[{\"id\":2,\"nome\":\"JUCESE\",\"url\":\"https:\\/\\/www.jucese.se.gov.br\\/\",\"status_code\":null,\"resposta\":null,\"url_verified_at\":null,\"user_id\":1,\"created_at\":\"2021-11-12T15:18:05.000000Z\",\"updated_at\":\"2021-11-12T15:18:05.000000Z\"}]', 'index', 1, '2021-11-12 21:24:52', '2021-11-12 21:24:52'),
+(359, 'Erro: validador.show', 'SQLSTATE[23000]: Integrity constraint violation: 1048 Column \'conteudo\' cannot be null (SQL: insert into `conveniados_logs` (`local`, `conteudo`, `operacao`, `user_id`, `updated_at`, `created_at`) values (Acesso: validador.show, ?, show, 1, 2021-11-12 18:24:56, 2021-11-12 18:24:56))', 'show', 1, '2021-11-12 21:24:56', '2021-11-12 21:24:56'),
+(360, 'Acesso: validador.index', '[{\"id\":2,\"nome\":\"JUCESE\",\"url\":\"https:\\/\\/www.jucese.se.gov.br\\/\",\"status_code\":null,\"resposta\":null,\"url_verified_at\":null,\"user_id\":1,\"created_at\":\"2021-11-12T15:18:05.000000Z\",\"updated_at\":\"2021-11-12T15:18:05.000000Z\"}]', 'index', 1, '2021-11-12 21:24:57', '2021-11-12 21:24:57'),
+(361, 'Erro: validador.show', 'SQLSTATE[23000]: Integrity constraint violation: 1048 Column \'conteudo\' cannot be null (SQL: insert into `conveniados_logs` (`local`, `conteudo`, `operacao`, `user_id`, `updated_at`, `created_at`) values (Acesso: validador.show, ?, show, 1, 2021-11-12 18:25:36, 2021-11-12 18:25:36))', 'show', 1, '2021-11-12 21:25:36', '2021-11-12 21:25:36'),
+(362, 'Acesso: validador.index', '[{\"id\":2,\"nome\":\"JUCESE\",\"url\":\"https:\\/\\/www.jucese.se.gov.br\\/\",\"status_code\":null,\"resposta\":null,\"url_verified_at\":null,\"user_id\":1,\"created_at\":\"2021-11-12T15:18:05.000000Z\",\"updated_at\":\"2021-11-12T15:18:05.000000Z\"}]', 'index', 1, '2021-11-12 21:25:37', '2021-11-12 21:25:37'),
+(363, 'Erro: validador.show', 'SQLSTATE[23000]: Integrity constraint violation: 1048 Column \'conteudo\' cannot be null (SQL: insert into `conveniados_logs` (`local`, `conteudo`, `operacao`, `user_id`, `updated_at`, `created_at`) values (Acesso: validador.show, ?, show, 1, 2021-11-12 18:25:37, 2021-11-12 18:25:37))', 'show', 1, '2021-11-12 21:25:37', '2021-11-12 21:25:37'),
+(364, 'Acesso: validador.index', '[{\"id\":2,\"nome\":\"JUCESE\",\"url\":\"https:\\/\\/www.jucese.se.gov.br\\/\",\"status_code\":null,\"resposta\":null,\"url_verified_at\":null,\"user_id\":1,\"created_at\":\"2021-11-12T15:18:05.000000Z\",\"updated_at\":\"2021-11-12T15:18:05.000000Z\"}]', 'index', 1, '2021-11-12 21:25:38', '2021-11-12 21:25:38'),
+(365, 'Erro: validador.show', 'SQLSTATE[23000]: Integrity constraint violation: 1048 Column \'conteudo\' cannot be null (SQL: insert into `conveniados_logs` (`local`, `conteudo`, `operacao`, `user_id`, `updated_at`, `created_at`) values (Acesso: validador.show, ?, show, 1, 2021-11-12 18:25:38, 2021-11-12 18:25:38))', 'show', 1, '2021-11-12 21:25:38', '2021-11-12 21:25:38'),
+(366, 'Erro: validador.show', 'SQLSTATE[23000]: Integrity constraint violation: 1048 Column \'conteudo\' cannot be null (SQL: insert into `conveniados_logs` (`local`, `conteudo`, `operacao`, `user_id`, `updated_at`, `created_at`) values (Acesso: validador.show, ?, show, 1, 2021-11-12 18:25:38, 2021-11-12 18:25:38))', 'show', 1, '2021-11-12 21:25:38', '2021-11-12 21:25:38'),
+(367, 'Acesso: validador.index', '[{\"id\":2,\"nome\":\"JUCESE\",\"url\":\"https:\\/\\/www.jucese.se.gov.br\\/\",\"status_code\":null,\"resposta\":null,\"url_verified_at\":null,\"user_id\":1,\"created_at\":\"2021-11-12T15:18:05.000000Z\",\"updated_at\":\"2021-11-12T15:18:05.000000Z\"}]', 'index', 1, '2021-11-12 21:25:39', '2021-11-12 21:25:39'),
+(368, 'Acesso: validador.index', '[{\"id\":2,\"nome\":\"JUCESE\",\"url\":\"https:\\/\\/www.jucese.se.gov.br\\/\",\"status_code\":null,\"resposta\":null,\"url_verified_at\":null,\"user_id\":1,\"created_at\":\"2021-11-12T15:18:05.000000Z\",\"updated_at\":\"2021-11-12T15:18:05.000000Z\"}]', 'index', 1, '2021-11-12 21:25:39', '2021-11-12 21:25:39'),
+(369, 'Acesso: validador.index', '[{\"id\":2,\"nome\":\"JUCESE\",\"url\":\"https:\\/\\/www.jucese.se.gov.br\\/\",\"status_code\":null,\"resposta\":null,\"url_verified_at\":null,\"user_id\":1,\"created_at\":\"2021-11-12T15:18:05.000000Z\",\"updated_at\":\"2021-11-12T15:18:05.000000Z\"}]', 'index', 1, '2021-11-12 21:29:25', '2021-11-12 21:29:25'),
+(370, 'Erro: validador.show', 'SQLSTATE[23000]: Integrity constraint violation: 1048 Column \'conteudo\' cannot be null (SQL: insert into `conveniados_logs` (`local`, `conteudo`, `operacao`, `user_id`, `updated_at`, `created_at`) values (Acesso: validador.show, ?, show, 1, 2021-11-12 18:29:28, 2021-11-12 18:29:28))', 'show', 1, '2021-11-12 21:29:28', '2021-11-12 21:29:28'),
+(371, 'Acesso: validador.index', '[{\"id\":2,\"nome\":\"JUCESE\",\"url\":\"https:\\/\\/www.jucese.se.gov.br\\/\",\"status_code\":null,\"resposta\":null,\"url_verified_at\":null,\"user_id\":1,\"created_at\":\"2021-11-12T15:18:05.000000Z\",\"updated_at\":\"2021-11-12T15:18:05.000000Z\"}]', 'index', 1, '2021-11-12 21:29:29', '2021-11-12 21:29:29'),
+(372, 'Acesso: validador.index', '[{\"id\":2,\"nome\":\"JUCESE\",\"url\":\"https:\\/\\/www.jucese.se.gov.br\\/\",\"status_code\":null,\"resposta\":null,\"url_verified_at\":null,\"user_id\":1,\"created_at\":\"2021-11-12T15:18:05.000000Z\",\"updated_at\":\"2021-11-12T15:18:05.000000Z\"}]', 'index', 1, '2021-11-12 21:33:52', '2021-11-12 21:33:52'),
+(373, 'Erro: validador.show', 'SQLSTATE[23000]: Integrity constraint violation: 1048 Column \'conteudo\' cannot be null (SQL: insert into `conveniados_logs` (`local`, `conteudo`, `operacao`, `user_id`, `updated_at`, `created_at`) values (Acesso: validador.show, ?, show, 1, 2021-11-12 18:33:54, 2021-11-12 18:33:54))', 'show', 1, '2021-11-12 21:33:54', '2021-11-12 21:33:54'),
+(374, 'Acesso: validador.index', '[{\"id\":2,\"nome\":\"JUCESE\",\"url\":\"https:\\/\\/www.jucese.se.gov.br\\/\",\"status_code\":null,\"resposta\":null,\"url_verified_at\":null,\"user_id\":1,\"created_at\":\"2021-11-12T15:18:05.000000Z\",\"updated_at\":\"2021-11-12T15:18:05.000000Z\"}]', 'index', 1, '2021-11-12 21:33:55', '2021-11-12 21:33:55'),
+(375, 'Erro: validador.show', 'SQLSTATE[23000]: Integrity constraint violation: 1048 Column \'conteudo\' cannot be null (SQL: insert into `conveniados_logs` (`local`, `conteudo`, `operacao`, `user_id`, `updated_at`, `created_at`) values (Acesso: validador.show, ?, show, 1, 2021-11-12 18:33:58, 2021-11-12 18:33:58))', 'show', 1, '2021-11-12 21:33:58', '2021-11-12 21:33:58'),
+(376, 'Acesso: validador.index', '[{\"id\":2,\"nome\":\"JUCESE\",\"url\":\"https:\\/\\/www.jucese.se.gov.br\\/\",\"status_code\":null,\"resposta\":null,\"url_verified_at\":null,\"user_id\":1,\"created_at\":\"2021-11-12T15:18:05.000000Z\",\"updated_at\":\"2021-11-12T15:18:05.000000Z\"}]', 'index', 1, '2021-11-12 21:33:59', '2021-11-12 21:33:59'),
+(377, 'Erro: validador.show', 'SQLSTATE[23000]: Integrity constraint violation: 1048 Column \'conteudo\' cannot be null (SQL: insert into `conveniados_logs` (`local`, `conteudo`, `operacao`, `user_id`, `updated_at`, `created_at`) values (Acesso: validador.show, ?, show, 1, 2021-11-12 18:34:38, 2021-11-12 18:34:38))', 'show', 1, '2021-11-12 21:34:38', '2021-11-12 21:34:38'),
+(378, 'Acesso: validador.index', '[{\"id\":2,\"nome\":\"JUCESE\",\"url\":\"https:\\/\\/www.jucese.se.gov.br\\/\",\"status_code\":null,\"resposta\":null,\"url_verified_at\":null,\"user_id\":1,\"created_at\":\"2021-11-12T15:18:05.000000Z\",\"updated_at\":\"2021-11-12T15:18:05.000000Z\"}]', 'index', 1, '2021-11-12 21:34:38', '2021-11-12 21:34:38'),
+(379, 'Acesso: validador.index', '[{\"id\":2,\"nome\":\"JUCESE\",\"url\":\"https:\\/\\/www.jucese.se.gov.br\\/\",\"status_code\":null,\"resposta\":null,\"url_verified_at\":null,\"user_id\":1,\"created_at\":\"2021-11-12T15:18:05.000000Z\",\"updated_at\":\"2021-11-12T15:18:05.000000Z\"}]', 'index', 1, '2021-11-12 21:34:40', '2021-11-12 21:34:40'),
+(380, 'Erro: validador.show', 'SQLSTATE[23000]: Integrity constraint violation: 1048 Column \'conteudo\' cannot be null (SQL: insert into `conveniados_logs` (`local`, `conteudo`, `operacao`, `user_id`, `updated_at`, `created_at`) values (Acesso: validador.show, ?, show, 1, 2021-11-12 18:34:43, 2021-11-12 18:34:43))', 'show', 1, '2021-11-12 21:34:43', '2021-11-12 21:34:43'),
+(381, 'Acesso: validador.index', '[{\"id\":2,\"nome\":\"JUCESE\",\"url\":\"https:\\/\\/www.jucese.se.gov.br\\/\",\"status_code\":null,\"resposta\":null,\"url_verified_at\":null,\"user_id\":1,\"created_at\":\"2021-11-12T15:18:05.000000Z\",\"updated_at\":\"2021-11-12T15:18:05.000000Z\"}]', 'index', 1, '2021-11-12 21:34:43', '2021-11-12 21:34:43'),
+(382, 'Acesso: validador.index', '[{\"id\":2,\"nome\":\"JUCESE\",\"url\":\"https:\\/\\/www.jucese.se.gov.br\\/\",\"status_code\":null,\"resposta\":null,\"url_verified_at\":null,\"user_id\":1,\"created_at\":\"2021-11-12T15:18:05.000000Z\",\"updated_at\":\"2021-11-12T15:18:05.000000Z\"}]', 'index', 1, '2021-11-12 21:42:47', '2021-11-12 21:42:47'),
+(383, 'Acesso: validador.index', '[{\"id\":2,\"nome\":\"JUCESE\",\"url\":\"https:\\/\\/www.jucese.se.gov.br\\/\",\"status_code\":null,\"resposta\":null,\"url_verified_at\":null,\"user_id\":1,\"created_at\":\"2021-11-12T15:18:05.000000Z\",\"updated_at\":\"2021-11-12T15:18:05.000000Z\"}]', 'index', 1, '2021-11-12 21:45:24', '2021-11-12 21:45:24'),
+(384, 'Erro: validador.show', 'SQLSTATE[23000]: Integrity constraint violation: 1048 Column \'conteudo\' cannot be null (SQL: insert into `conveniados_logs` (`local`, `conteudo`, `operacao`, `user_id`, `updated_at`, `created_at`) values (Acesso: validador.show, ?, show, 1, 2021-11-12 18:45:36, 2021-11-12 18:45:36))', 'show', 1, '2021-11-12 21:45:36', '2021-11-12 21:45:36'),
+(385, 'Acesso: validador.index', '[{\"id\":2,\"nome\":\"JUCESE\",\"url\":\"https:\\/\\/www.jucese.se.gov.br\\/\",\"status_code\":null,\"resposta\":null,\"url_verified_at\":null,\"user_id\":1,\"created_at\":\"2021-11-12T15:18:05.000000Z\",\"updated_at\":\"2021-11-12T15:18:05.000000Z\"}]', 'index', 1, '2021-11-12 21:45:37', '2021-11-12 21:45:37'),
+(386, 'Erro: validador.show', 'SQLSTATE[23000]: Integrity constraint violation: 1048 Column \'conteudo\' cannot be null (SQL: insert into `conveniados_logs` (`local`, `conteudo`, `operacao`, `user_id`, `updated_at`, `created_at`) values (Acesso: validador.show, ?, show, 1, 2021-11-12 18:45:50, 2021-11-12 18:45:50))', 'show', 1, '2021-11-12 21:45:50', '2021-11-12 21:45:50'),
+(387, 'Acesso: validador.index', '[{\"id\":2,\"nome\":\"JUCESE\",\"url\":\"https:\\/\\/www.jucese.se.gov.br\\/\",\"status_code\":null,\"resposta\":null,\"url_verified_at\":null,\"user_id\":1,\"created_at\":\"2021-11-12T15:18:05.000000Z\",\"updated_at\":\"2021-11-12T15:18:05.000000Z\"}]', 'index', 1, '2021-11-12 21:45:51', '2021-11-12 21:45:51'),
+(388, 'Acesso: validador.index', '[{\"id\":2,\"nome\":\"JUCESE\",\"url\":\"https:\\/\\/www.jucese.se.gov.br\\/\",\"status_code\":null,\"resposta\":null,\"url_verified_at\":null,\"user_id\":1,\"created_at\":\"2021-11-12T15:18:05.000000Z\",\"updated_at\":\"2021-11-12T15:18:05.000000Z\"}]', 'index', 1, '2021-11-12 21:45:55', '2021-11-12 21:45:55'),
+(389, 'Erro: validador.show', 'SQLSTATE[23000]: Integrity constraint violation: 1048 Column \'conteudo\' cannot be null (SQL: insert into `conveniados_logs` (`local`, `conteudo`, `operacao`, `user_id`, `updated_at`, `created_at`) values (Acesso: validador.show, ?, show, 1, 2021-11-12 18:45:58, 2021-11-12 18:45:58))', 'show', 1, '2021-11-12 21:45:58', '2021-11-12 21:45:58'),
+(390, 'Acesso: validador.index', '[{\"id\":2,\"nome\":\"JUCESE\",\"url\":\"https:\\/\\/www.jucese.se.gov.br\\/\",\"status_code\":null,\"resposta\":null,\"url_verified_at\":null,\"user_id\":1,\"created_at\":\"2021-11-12T15:18:05.000000Z\",\"updated_at\":\"2021-11-12T15:18:05.000000Z\"}]', 'index', 1, '2021-11-12 21:45:59', '2021-11-12 21:45:59'),
+(391, 'Erro: validador.show', 'SQLSTATE[23000]: Integrity constraint violation: 1048 Column \'conteudo\' cannot be null (SQL: insert into `conveniados_logs` (`local`, `conteudo`, `operacao`, `user_id`, `updated_at`, `created_at`) values (Acesso: validador.show, ?, show, 1, 2021-11-12 18:46:10, 2021-11-12 18:46:10))', 'show', 1, '2021-11-12 21:46:10', '2021-11-12 21:46:10'),
+(392, 'Acesso: validador.index', '[{\"id\":2,\"nome\":\"JUCESE\",\"url\":\"https:\\/\\/www.jucese.se.gov.br\\/\",\"status_code\":null,\"resposta\":null,\"url_verified_at\":null,\"user_id\":1,\"created_at\":\"2021-11-12T15:18:05.000000Z\",\"updated_at\":\"2021-11-12T15:18:05.000000Z\"}]', 'index', 1, '2021-11-12 21:46:10', '2021-11-12 21:46:10'),
+(393, 'Erro: validador.show', 'SQLSTATE[23000]: Integrity constraint violation: 1048 Column \'conteudo\' cannot be null (SQL: insert into `conveniados_logs` (`local`, `conteudo`, `operacao`, `user_id`, `updated_at`, `created_at`) values (Acesso: validador.show, ?, show, 1, 2021-11-12 18:46:24, 2021-11-12 18:46:24))', 'show', 1, '2021-11-12 21:46:24', '2021-11-12 21:46:24'),
+(394, 'Acesso: validador.index', '[{\"id\":2,\"nome\":\"JUCESE\",\"url\":\"https:\\/\\/www.jucese.se.gov.br\\/\",\"status_code\":null,\"resposta\":null,\"url_verified_at\":null,\"user_id\":1,\"created_at\":\"2021-11-12T15:18:05.000000Z\",\"updated_at\":\"2021-11-12T15:18:05.000000Z\"}]', 'index', 1, '2021-11-12 21:46:24', '2021-11-12 21:46:24'),
+(395, 'Acesso: validador.index', '[{\"id\":2,\"nome\":\"JUCESE\",\"url\":\"https:\\/\\/www.jucese.se.gov.br\\/\",\"status_code\":null,\"resposta\":null,\"url_verified_at\":null,\"user_id\":1,\"created_at\":\"2021-11-12T15:18:05.000000Z\",\"updated_at\":\"2021-11-12T15:18:05.000000Z\"}]', 'index', 1, '2021-11-12 21:46:25', '2021-11-12 21:46:25'),
+(396, 'Erro: validador.show', 'SQLSTATE[23000]: Integrity constraint violation: 1048 Column \'conteudo\' cannot be null (SQL: insert into `conveniados_logs` (`local`, `conteudo`, `operacao`, `user_id`, `updated_at`, `created_at`) values (Acesso: validador.show, ?, show, 1, 2021-11-12 18:46:28, 2021-11-12 18:46:28))', 'show', 1, '2021-11-12 21:46:28', '2021-11-12 21:46:28'),
+(397, 'Acesso: validador.index', '[{\"id\":2,\"nome\":\"JUCESE\",\"url\":\"https:\\/\\/www.jucese.se.gov.br\\/\",\"status_code\":null,\"resposta\":null,\"url_verified_at\":null,\"user_id\":1,\"created_at\":\"2021-11-12T15:18:05.000000Z\",\"updated_at\":\"2021-11-12T15:18:05.000000Z\"}]', 'index', 1, '2021-11-12 21:46:28', '2021-11-12 21:46:28'),
+(398, 'Acesso: validador.index', '[{\"id\":2,\"nome\":\"JUCESE\",\"url\":\"https:\\/\\/www.jucese.se.gov.br\\/\",\"status_code\":null,\"resposta\":null,\"url_verified_at\":null,\"user_id\":1,\"created_at\":\"2021-11-12T15:18:05.000000Z\",\"updated_at\":\"2021-11-12T15:18:05.000000Z\"}]', 'index', 1, '2021-11-12 21:46:51', '2021-11-12 21:46:51'),
+(399, 'Erro: validador.show', 'SQLSTATE[23000]: Integrity constraint violation: 1048 Column \'conteudo\' cannot be null (SQL: insert into `conveniados_logs` (`local`, `conteudo`, `operacao`, `user_id`, `updated_at`, `created_at`) values (Acesso: validador.show, ?, show, 1, 2021-11-12 18:46:53, 2021-11-12 18:46:53))', 'show', 1, '2021-11-12 21:46:53', '2021-11-12 21:46:53'),
+(400, 'Acesso: validador.index', '[{\"id\":2,\"nome\":\"JUCESE\",\"url\":\"https:\\/\\/www.jucese.se.gov.br\\/\",\"status_code\":null,\"resposta\":null,\"url_verified_at\":null,\"user_id\":1,\"created_at\":\"2021-11-12T15:18:05.000000Z\",\"updated_at\":\"2021-11-12T15:18:05.000000Z\"}]', 'index', 1, '2021-11-12 21:46:53', '2021-11-12 21:46:53'),
+(401, 'Acesso: validador.index', '[{\"id\":2,\"nome\":\"JUCESE\",\"url\":\"https:\\/\\/www.jucese.se.gov.br\\/\",\"status_code\":null,\"resposta\":null,\"url_verified_at\":null,\"user_id\":1,\"created_at\":\"2021-11-12T15:18:05.000000Z\",\"updated_at\":\"2021-11-12T15:18:05.000000Z\"}]', 'index', 1, '2021-11-12 21:48:59', '2021-11-12 21:48:59'),
+(402, 'Erro: validador.show', 'SQLSTATE[23000]: Integrity constraint violation: 1048 Column \'conteudo\' cannot be null (SQL: insert into `conveniados_logs` (`local`, `conteudo`, `operacao`, `user_id`, `updated_at`, `created_at`) values (Acesso: validador.show, ?, show, 1, 2021-11-12 18:49:02, 2021-11-12 18:49:02))', 'show', 1, '2021-11-12 21:49:02', '2021-11-12 21:49:02'),
+(403, 'Acesso: validador.index', '[{\"id\":2,\"nome\":\"JUCESE\",\"url\":\"https:\\/\\/www.jucese.se.gov.br\\/\",\"status_code\":null,\"resposta\":null,\"url_verified_at\":null,\"user_id\":1,\"created_at\":\"2021-11-12T15:18:05.000000Z\",\"updated_at\":\"2021-11-12T15:18:05.000000Z\"}]', 'index', 1, '2021-11-12 21:49:02', '2021-11-12 21:49:02'),
+(404, 'Erro: validador.show', 'SQLSTATE[23000]: Integrity constraint violation: 1048 Column \'conteudo\' cannot be null (SQL: insert into `conveniados_logs` (`local`, `conteudo`, `operacao`, `user_id`, `updated_at`, `created_at`) values (Acesso: validador.show, ?, show, 1, 2021-11-12 18:49:07, 2021-11-12 18:49:07))', 'show', 1, '2021-11-12 21:49:07', '2021-11-12 21:49:07'),
+(405, 'Acesso: validador.index', '[{\"id\":2,\"nome\":\"JUCESE\",\"url\":\"https:\\/\\/www.jucese.se.gov.br\\/\",\"status_code\":null,\"resposta\":null,\"url_verified_at\":null,\"user_id\":1,\"created_at\":\"2021-11-12T15:18:05.000000Z\",\"updated_at\":\"2021-11-12T15:18:05.000000Z\"}]', 'index', 1, '2021-11-12 21:49:07', '2021-11-12 21:49:07'),
+(406, 'Erro: validador.show', 'SQLSTATE[23000]: Integrity constraint violation: 1048 Column \'conteudo\' cannot be null (SQL: insert into `conveniados_logs` (`local`, `conteudo`, `operacao`, `user_id`, `updated_at`, `created_at`) values (Acesso: validador.show, ?, show, 1, 2021-11-12 18:49:15, 2021-11-12 18:49:15))', 'show', 1, '2021-11-12 21:49:15', '2021-11-12 21:49:15'),
+(407, 'Acesso: validador.index', '[{\"id\":2,\"nome\":\"JUCESE\",\"url\":\"https:\\/\\/www.jucese.se.gov.br\\/\",\"status_code\":null,\"resposta\":null,\"url_verified_at\":null,\"user_id\":1,\"created_at\":\"2021-11-12T15:18:05.000000Z\",\"updated_at\":\"2021-11-12T15:18:05.000000Z\"}]', 'index', 1, '2021-11-12 21:49:16', '2021-11-12 21:49:16'),
+(408, 'Erro: validador.show', 'SQLSTATE[23000]: Integrity constraint violation: 1048 Column \'conteudo\' cannot be null (SQL: insert into `conveniados_logs` (`local`, `conteudo`, `operacao`, `user_id`, `updated_at`, `created_at`) values (Acesso: validador.show, ?, show, 1, 2021-11-12 18:49:19, 2021-11-12 18:49:19))', 'show', 1, '2021-11-12 21:49:19', '2021-11-12 21:49:19'),
+(409, 'Acesso: validador.index', '[{\"id\":2,\"nome\":\"JUCESE\",\"url\":\"https:\\/\\/www.jucese.se.gov.br\\/\",\"status_code\":null,\"resposta\":null,\"url_verified_at\":null,\"user_id\":1,\"created_at\":\"2021-11-12T15:18:05.000000Z\",\"updated_at\":\"2021-11-12T15:18:05.000000Z\"}]', 'index', 1, '2021-11-12 21:49:20', '2021-11-12 21:49:20'),
+(410, 'Acesso: validador.index', '[{\"id\":2,\"nome\":\"JUCESE\",\"url\":\"https:\\/\\/www.jucese.se.gov.br\\/\",\"status_code\":null,\"resposta\":null,\"url_verified_at\":null,\"user_id\":1,\"created_at\":\"2021-11-12T15:18:05.000000Z\",\"updated_at\":\"2021-11-12T15:18:05.000000Z\"}]', 'index', 1, '2021-11-12 21:49:21', '2021-11-12 21:49:21'),
+(411, 'Erro: validador.show', 'SQLSTATE[23000]: Integrity constraint violation: 1048 Column \'conteudo\' cannot be null (SQL: insert into `conveniados_logs` (`local`, `conteudo`, `operacao`, `user_id`, `updated_at`, `created_at`) values (Acesso: validador.show, ?, show, 1, 2021-11-12 18:49:23, 2021-11-12 18:49:23))', 'show', 1, '2021-11-12 21:49:23', '2021-11-12 21:49:23'),
+(412, 'Acesso: validador.index', '[{\"id\":2,\"nome\":\"JUCESE\",\"url\":\"https:\\/\\/www.jucese.se.gov.br\\/\",\"status_code\":null,\"resposta\":null,\"url_verified_at\":null,\"user_id\":1,\"created_at\":\"2021-11-12T15:18:05.000000Z\",\"updated_at\":\"2021-11-12T15:18:05.000000Z\"}]', 'index', 1, '2021-11-12 21:49:23', '2021-11-12 21:49:23'),
+(413, 'Erro: validador.show', 'SQLSTATE[23000]: Integrity constraint violation: 1048 Column \'conteudo\' cannot be null (SQL: insert into `conveniados_logs` (`local`, `conteudo`, `operacao`, `user_id`, `updated_at`, `created_at`) values (Acesso: validador.show, ?, show, 1, 2021-11-12 18:49:25, 2021-11-12 18:49:25))', 'show', 1, '2021-11-12 21:49:25', '2021-11-12 21:49:25'),
+(414, 'Acesso: validador.index', '[{\"id\":2,\"nome\":\"JUCESE\",\"url\":\"https:\\/\\/www.jucese.se.gov.br\\/\",\"status_code\":null,\"resposta\":null,\"url_verified_at\":null,\"user_id\":1,\"created_at\":\"2021-11-12T15:18:05.000000Z\",\"updated_at\":\"2021-11-12T15:18:05.000000Z\"}]', 'index', 1, '2021-11-12 21:49:26', '2021-11-12 21:49:26'),
+(415, 'Erro: validador.show', 'SQLSTATE[23000]: Integrity constraint violation: 1048 Column \'conteudo\' cannot be null (SQL: insert into `conveniados_logs` (`local`, `conteudo`, `operacao`, `user_id`, `updated_at`, `created_at`) values (Acesso: validador.show, ?, show, 1, 2021-11-12 18:50:14, 2021-11-12 18:50:14))', 'show', 1, '2021-11-12 21:50:14', '2021-11-12 21:50:14'),
+(416, 'Acesso: validador.index', '[{\"id\":2,\"nome\":\"JUCESE\",\"url\":\"https:\\/\\/www.jucese.se.gov.br\\/\",\"status_code\":null,\"resposta\":null,\"url_verified_at\":null,\"user_id\":1,\"created_at\":\"2021-11-12T15:18:05.000000Z\",\"updated_at\":\"2021-11-12T15:18:05.000000Z\"}]', 'index', 1, '2021-11-12 21:50:14', '2021-11-12 21:50:14'),
+(417, 'Acesso: validador.index', '[{\"id\":2,\"nome\":\"JUCESE\",\"url\":\"https:\\/\\/www.jucese.se.gov.br\\/\",\"status_code\":null,\"resposta\":null,\"url_verified_at\":null,\"user_id\":1,\"created_at\":\"2021-11-12T15:18:05.000000Z\",\"updated_at\":\"2021-11-12T15:18:05.000000Z\"}]', 'index', 1, '2021-11-12 21:51:29', '2021-11-12 21:51:29'),
+(418, 'Erro: validador.show', 'SQLSTATE[23000]: Integrity constraint violation: 1048 Column \'conteudo\' cannot be null (SQL: insert into `conveniados_logs` (`local`, `conteudo`, `operacao`, `user_id`, `updated_at`, `created_at`) values (Acesso: validador.show, ?, show, 1, 2021-11-12 18:51:58, 2021-11-12 18:51:58))', 'show', 1, '2021-11-12 21:51:58', '2021-11-12 21:51:58'),
+(419, 'Acesso: validador.index', '[{\"id\":2,\"nome\":\"JUCESE\",\"url\":\"https:\\/\\/www.jucese.se.gov.br\\/\",\"status_code\":null,\"resposta\":null,\"url_verified_at\":null,\"user_id\":1,\"created_at\":\"2021-11-12T15:18:05.000000Z\",\"updated_at\":\"2021-11-12T15:18:05.000000Z\"}]', 'index', 1, '2021-11-12 21:51:58', '2021-11-12 21:51:58'),
+(420, 'Erro: validador.show', 'SQLSTATE[23000]: Integrity constraint violation: 1048 Column \'conteudo\' cannot be null (SQL: insert into `conveniados_logs` (`local`, `conteudo`, `operacao`, `user_id`, `updated_at`, `created_at`) values (Acesso: validador.show, ?, show, 1, 2021-11-12 18:52:42, 2021-11-12 18:52:42))', 'show', 1, '2021-11-12 21:52:42', '2021-11-12 21:52:42'),
+(421, 'Acesso: validador.index', '[{\"id\":2,\"nome\":\"JUCEAAASE\",\"url\":\"https:\\/\\/www.jucese.se.gov.br\\/\",\"status_code\":null,\"resposta\":null,\"url_verified_at\":null,\"user_id\":1,\"created_at\":\"2021-11-12T15:18:05.000000Z\",\"updated_at\":\"2021-11-12T15:18:05.000000Z\"}]', 'index', 1, '2021-11-12 21:52:43', '2021-11-12 21:52:43'),
+(422, 'Erro: validador.show', 'SQLSTATE[23000]: Integrity constraint violation: 1048 Column \'conteudo\' cannot be null (SQL: insert into `conveniados_logs` (`local`, `conteudo`, `operacao`, `user_id`, `updated_at`, `created_at`) values (Acesso: validador.show, ?, show, 1, 2021-11-12 18:53:10, 2021-11-12 18:53:10))', 'show', 1, '2021-11-12 21:53:10', '2021-11-12 21:53:10'),
+(423, 'Acesso: validador.index', '[{\"id\":2,\"nome\":\"JUCEAAASE\",\"url\":\"https:\\/\\/www.jucese.se.gov.br\\/\",\"status_code\":null,\"resposta\":null,\"url_verified_at\":null,\"user_id\":1,\"created_at\":\"2021-11-12T15:18:05.000000Z\",\"updated_at\":\"2021-11-12T15:18:05.000000Z\"}]', 'index', 1, '2021-11-12 21:53:11', '2021-11-12 21:53:11'),
+(424, 'Erro: validador.show', 'SQLSTATE[23000]: Integrity constraint violation: 1048 Column \'conteudo\' cannot be null (SQL: insert into `conveniados_logs` (`local`, `conteudo`, `operacao`, `user_id`, `updated_at`, `created_at`) values (Acesso: validador.show, ?, show, 1, 2021-11-12 18:57:07, 2021-11-12 18:57:07))', 'show', 1, '2021-11-12 21:57:07', '2021-11-12 21:57:07'),
+(425, 'Acesso: validador.index', '[{\"id\":2,\"nome\":\"JUCEAAASE\",\"url\":\"https:\\/\\/www.jucese.se.gov.br\\/\",\"status_code\":null,\"resposta\":null,\"url_verified_at\":null,\"user_id\":1,\"created_at\":\"2021-11-12T15:18:05.000000Z\",\"updated_at\":\"2021-11-12T15:18:05.000000Z\"}]', 'index', 1, '2021-11-12 21:57:07', '2021-11-12 21:57:07'),
+(426, 'Acesso: validador.index', '[{\"id\":2,\"nome\":\"JUCEAAASE\",\"url\":\"https:\\/\\/www.jucese.se.gov.br\\/\",\"status_code\":null,\"resposta\":null,\"url_verified_at\":null,\"user_id\":1,\"created_at\":\"2021-11-12T15:18:05.000000Z\",\"updated_at\":\"2021-11-12T15:18:05.000000Z\"}]', 'index', 1, '2021-11-12 21:59:46', '2021-11-12 21:59:46'),
+(427, 'Erro: validador.show', 'SQLSTATE[23000]: Integrity constraint violation: 1048 Column \'conteudo\' cannot be null (SQL: insert into `conveniados_logs` (`local`, `conteudo`, `operacao`, `user_id`, `updated_at`, `created_at`) values (Acesso: validador.show, ?, show, 1, 2021-11-12 18:59:48, 2021-11-12 18:59:48))', 'show', 1, '2021-11-12 21:59:48', '2021-11-12 21:59:48'),
+(428, 'Acesso: validador.index', '[{\"id\":2,\"nome\":\"JUCEAAASE\",\"url\":\"https:\\/\\/www.jucese.se.gov.br\\/\",\"status_code\":null,\"resposta\":null,\"url_verified_at\":null,\"user_id\":1,\"created_at\":\"2021-11-12T15:18:05.000000Z\",\"updated_at\":\"2021-11-12T15:18:05.000000Z\"}]', 'index', 1, '2021-11-12 21:59:49', '2021-11-12 21:59:49'),
+(429, 'Erro: validador.show', 'SQLSTATE[23000]: Integrity constraint violation: 1048 Column \'conteudo\' cannot be null (SQL: insert into `conveniados_logs` (`local`, `conteudo`, `operacao`, `user_id`, `updated_at`, `created_at`) values (Acesso: validador.show, ?, show, 1, 2021-11-12 19:00:12, 2021-11-12 19:00:12))', 'show', 1, '2021-11-12 22:00:12', '2021-11-12 22:00:12'),
+(430, 'Acesso: validador.index', '[{\"id\":2,\"nome\":\"JUCEAAASE\",\"url\":\"https:\\/\\/www.jucese.se.gov.br\\/\",\"status_code\":null,\"resposta\":null,\"url_verified_at\":null,\"user_id\":1,\"created_at\":\"2021-11-12T15:18:05.000000Z\",\"updated_at\":\"2021-11-12T15:18:05.000000Z\"}]', 'index', 1, '2021-11-12 22:00:12', '2021-11-12 22:00:12'),
+(431, 'Erro: validador.show', 'SQLSTATE[23000]: Integrity constraint violation: 1048 Column \'conteudo\' cannot be null (SQL: insert into `conveniados_logs` (`local`, `conteudo`, `operacao`, `user_id`, `updated_at`, `created_at`) values (Acesso: validador.show, ?, show, 1, 2021-11-12 19:00:14, 2021-11-12 19:00:14))', 'show', 1, '2021-11-12 22:00:14', '2021-11-12 22:00:14'),
+(432, 'Acesso: validador.index', '[{\"id\":2,\"nome\":\"JUCEAAASE\",\"url\":\"https:\\/\\/www.jucese.se.gov.br\\/\",\"status_code\":null,\"resposta\":null,\"url_verified_at\":null,\"user_id\":1,\"created_at\":\"2021-11-12T15:18:05.000000Z\",\"updated_at\":\"2021-11-12T15:18:05.000000Z\"}]', 'index', 1, '2021-11-12 22:00:14', '2021-11-12 22:00:14'),
+(433, 'Acesso: validador.index', '[{\"id\":2,\"nome\":\"JUCEAAASE\",\"url\":\"https:\\/\\/www.jucese.se.gov.br\\/\",\"status_code\":null,\"resposta\":null,\"url_verified_at\":null,\"user_id\":1,\"created_at\":\"2021-11-12T15:18:05.000000Z\",\"updated_at\":\"2021-11-12T15:18:05.000000Z\"}]', 'index', 1, '2021-11-12 22:00:38', '2021-11-12 22:00:38'),
+(434, 'Erro: validador.show', 'SQLSTATE[23000]: Integrity constraint violation: 1048 Column \'conteudo\' cannot be null (SQL: insert into `conveniados_logs` (`local`, `conteudo`, `operacao`, `user_id`, `updated_at`, `created_at`) values (Acesso: validador.show, ?, show, 1, 2021-11-12 19:00:41, 2021-11-12 19:00:41))', 'show', 1, '2021-11-12 22:00:41', '2021-11-12 22:00:41'),
+(435, 'Acesso: validador.index', '[{\"id\":2,\"nome\":\"JUCEAAASE\",\"url\":\"https:\\/\\/www.jucese.se.gov.br\\/\",\"status_code\":null,\"resposta\":null,\"url_verified_at\":null,\"user_id\":1,\"created_at\":\"2021-11-12T15:18:05.000000Z\",\"updated_at\":\"2021-11-12T15:18:05.000000Z\"}]', 'index', 1, '2021-11-12 22:00:42', '2021-11-12 22:00:42'),
+(436, 'Erro: validador.show', 'SQLSTATE[23000]: Integrity constraint violation: 1048 Column \'conteudo\' cannot be null (SQL: insert into `conveniados_logs` (`local`, `conteudo`, `operacao`, `user_id`, `updated_at`, `created_at`) values (Acesso: validador.show, ?, show, 1, 2021-11-12 19:00:58, 2021-11-12 19:00:58))', 'show', 1, '2021-11-12 22:00:58', '2021-11-12 22:00:58'),
+(437, 'Acesso: validador.index', '[{\"id\":2,\"nome\":\"JUCEAAASE\",\"url\":\"https:\\/\\/www.jucese.se.gov.br\\/\",\"status_code\":null,\"resposta\":null,\"url_verified_at\":null,\"user_id\":1,\"created_at\":\"2021-11-12T15:18:05.000000Z\",\"updated_at\":\"2021-11-12T15:18:05.000000Z\"}]', 'index', 1, '2021-11-12 22:00:59', '2021-11-12 22:00:59'),
+(438, 'Erro: validador.show', 'SQLSTATE[23000]: Integrity constraint violation: 1048 Column \'conteudo\' cannot be null (SQL: insert into `conveniados_logs` (`local`, `conteudo`, `operacao`, `user_id`, `updated_at`, `created_at`) values (Acesso: validador.show, ?, show, 1, 2021-11-12 19:02:31, 2021-11-12 19:02:31))', 'show', 1, '2021-11-12 22:02:31', '2021-11-12 22:02:31'),
+(439, 'Acesso: validador.index', '[{\"id\":2,\"nome\":\"JUCEAAASE\",\"url\":\"https:\\/\\/www.jucese.se.gov.br\\/\",\"status_code\":null,\"resposta\":null,\"url_verified_at\":null,\"user_id\":1,\"created_at\":\"2021-11-12T15:18:05.000000Z\",\"updated_at\":\"2021-11-12T15:18:05.000000Z\"}]', 'index', 1, '2021-11-12 22:02:31', '2021-11-12 22:02:31'),
+(440, 'Acesso: validador.index', '[{\"id\":2,\"nome\":\"JUCEAAASE\",\"url\":\"https:\\/\\/www.jucese.se.gov.br\\/\",\"status_code\":null,\"resposta\":null,\"url_verified_at\":null,\"user_id\":1,\"created_at\":\"2021-11-12T15:18:05.000000Z\",\"updated_at\":\"2021-11-12T15:18:05.000000Z\"}]', 'index', 1, '2021-11-12 22:02:43', '2021-11-12 22:02:43'),
+(441, 'Acesso: validador.create', 'Cadastro de URL', 'create', 1, '2021-11-12 22:02:47', '2021-11-12 22:02:47'),
+(442, 'Erro: validador.show', 'SQLSTATE[23000]: Integrity constraint violation: 1048 Column \'conteudo\' cannot be null (SQL: insert into `conveniados_logs` (`local`, `conteudo`, `operacao`, `user_id`, `updated_at`, `created_at`) values (Acesso: validador.show, ?, show, 1, 2021-11-12 19:02:56, 2021-11-12 19:02:56))', 'show', 1, '2021-11-12 22:02:56', '2021-11-12 22:02:56'),
+(443, 'Acesso: validador.index', '[{\"id\":2,\"nome\":\"JUCEAAASE\",\"url\":\"https:\\/\\/www.jucese.se.gov.br\\/\",\"status_code\":null,\"resposta\":null,\"url_verified_at\":null,\"user_id\":1,\"created_at\":\"2021-11-12T15:18:05.000000Z\",\"updated_at\":\"2021-11-12T15:18:05.000000Z\"}]', 'index', 1, '2021-11-12 22:02:56', '2021-11-12 22:02:56'),
+(444, 'Erro: validador.show', 'SQLSTATE[23000]: Integrity constraint violation: 1048 Column \'conteudo\' cannot be null (SQL: insert into `conveniados_logs` (`local`, `conteudo`, `operacao`, `user_id`, `updated_at`, `created_at`) values (Acesso: validador.show, ?, show, 1, 2021-11-12 19:03:13, 2021-11-12 19:03:13))', 'show', 1, '2021-11-12 22:03:13', '2021-11-12 22:03:13'),
+(445, 'Acesso: validador.create', 'Cadastro de URL', 'create', 1, '2021-11-12 22:03:13', '2021-11-12 22:03:13'),
+(446, 'Erro: validador.show', 'SQLSTATE[23000]: Integrity constraint violation: 1048 Column \'conteudo\' cannot be null (SQL: insert into `conveniados_logs` (`local`, `conteudo`, `operacao`, `user_id`, `updated_at`, `created_at`) values (Acesso: validador.show, ?, show, 1, 2021-11-12 19:05:54, 2021-11-12 19:05:54))', 'show', 1, '2021-11-12 22:05:54', '2021-11-12 22:05:54'),
+(447, 'Acesso: validador.create', 'Cadastro de URL', 'create', 1, '2021-11-12 22:05:54', '2021-11-12 22:05:54'),
+(448, 'Acesso: validador.index', '[{\"id\":2,\"nome\":\"JUCEAAASE\",\"url\":\"https:\\/\\/www.jucese.se.gov.br\\/\",\"status_code\":null,\"resposta\":null,\"url_verified_at\":null,\"user_id\":1,\"created_at\":\"2021-11-12T15:18:05.000000Z\",\"updated_at\":\"2021-11-12T15:18:05.000000Z\"}]', 'index', 1, '2021-11-12 22:06:23', '2021-11-12 22:06:23'),
+(449, 'Acesso: validador.show', '{\"id\":2,\"nome\":\"JUCEAAASE\",\"url\":\"https:\\/\\/www.jucese.se.gov.br\\/\",\"status_code\":null,\"resposta\":null,\"url_verified_at\":null,\"user_id\":1,\"created_at\":\"2021-11-12T15:18:05.000000Z\",\"updated_at\":\"2021-11-12T15:18:05.000000Z\"}', 'show', 1, '2021-11-12 22:06:27', '2021-11-12 22:06:27');
+INSERT INTO `conveniados_logs` (`id`, `local`, `conteudo`, `operacao`, `user_id`, `created_at`, `updated_at`) VALUES
+(450, 'Acesso: validador.show', '{\"id\":2,\"nome\":\"JUCEAAASE\",\"url\":\"https:\\/\\/www.jucese.se.gov.br\\/\",\"status_code\":null,\"resposta\":null,\"url_verified_at\":null,\"user_id\":1,\"created_at\":\"2021-11-12T15:18:05.000000Z\",\"updated_at\":\"2021-11-12T15:18:05.000000Z\"}', 'show', 1, '2021-11-12 22:06:37', '2021-11-12 22:06:37'),
+(451, 'Acesso: validador.edit', '{\"id\":2,\"nome\":\"JUCEAAASE\",\"url\":\"https:\\/\\/www.jucese.se.gov.br\\/\",\"status_code\":null,\"resposta\":null,\"url_verified_at\":null,\"user_id\":1,\"created_at\":\"2021-11-12T15:18:05.000000Z\",\"updated_at\":\"2021-11-12T15:18:05.000000Z\"}', 'edit', 1, '2021-11-12 22:07:03', '2021-11-12 22:07:03'),
+(452, 'Acesso: validador.create', 'Cadastro de URL', 'create', 1, '2021-11-12 22:07:36', '2021-11-12 22:07:36'),
+(453, 'Erro: validador.show', 'SQLSTATE[23000]: Integrity constraint violation: 1048 Column \'conteudo\' cannot be null (SQL: insert into `conveniados_logs` (`local`, `conteudo`, `operacao`, `user_id`, `updated_at`, `created_at`) values (Acesso: validador.show, ?, show, 1, 2021-11-12 19:07:55, 2021-11-12 19:07:55))', 'show', 1, '2021-11-12 22:07:55', '2021-11-12 22:07:55'),
+(454, 'Acesso: validador.create', 'Cadastro de URL', 'create', 1, '2021-11-12 22:07:55', '2021-11-12 22:07:55'),
+(455, 'Acesso: validador.index', '[{\"id\":2,\"nome\":\"JUCEAAASE\",\"url\":\"https:\\/\\/www.jucese.se.gov.br\\/\",\"status_code\":null,\"resposta\":null,\"url_verified_at\":null,\"user_id\":1,\"created_at\":\"2021-11-12T15:18:05.000000Z\",\"updated_at\":\"2021-11-12T15:18:05.000000Z\"}]', 'index', 1, '2021-11-12 22:08:12', '2021-11-12 22:08:12'),
+(456, 'Erro: validador.show', 'SQLSTATE[23000]: Integrity constraint violation: 1048 Column \'conteudo\' cannot be null (SQL: insert into `conveniados_logs` (`local`, `conteudo`, `operacao`, `user_id`, `updated_at`, `created_at`) values (Acesso: validador.show, ?, show, 1, 2021-11-12 19:08:16, 2021-11-12 19:08:16))', 'show', 1, '2021-11-12 22:08:16', '2021-11-12 22:08:16'),
+(457, 'Acesso: validador.index', '[{\"id\":2,\"nome\":\"JUCEAAASE\",\"url\":\"https:\\/\\/www.jucese.se.gov.br\\/\",\"status_code\":null,\"resposta\":null,\"url_verified_at\":null,\"user_id\":1,\"created_at\":\"2021-11-12T15:18:05.000000Z\",\"updated_at\":\"2021-11-12T15:18:05.000000Z\"}]', 'index', 1, '2021-11-12 22:08:17', '2021-11-12 22:08:17'),
+(458, 'Acesso: validador.index', '[{\"id\":2,\"nome\":\"JUCEAAASE\",\"url\":\"https:\\/\\/www.jucese.se.gov.br\\/\",\"status_code\":null,\"resposta\":null,\"url_verified_at\":null,\"user_id\":1,\"created_at\":\"2021-11-12T15:18:05.000000Z\",\"updated_at\":\"2021-11-12T15:18:05.000000Z\"}]', 'index', 1, '2021-11-12 22:09:29', '2021-11-12 22:09:29'),
+(459, 'Acesso: validador.index', '[{\"id\":2,\"nome\":\"JUCEAAASE\",\"url\":\"https:\\/\\/www.jucese.se.gov.br\\/\",\"status_code\":null,\"resposta\":null,\"url_verified_at\":null,\"user_id\":1,\"created_at\":\"2021-11-12T15:18:05.000000Z\",\"updated_at\":\"2021-11-12T15:18:05.000000Z\"}]', 'index', 1, '2021-11-12 22:09:32', '2021-11-12 22:09:32'),
+(460, 'Acesso: validador.index', '[{\"id\":2,\"nome\":\"JUCEAAASE\",\"url\":\"https:\\/\\/www.jucese.se.gov.br\\/\",\"status_code\":null,\"resposta\":null,\"url_verified_at\":null,\"user_id\":1,\"created_at\":\"2021-11-12T15:18:05.000000Z\",\"updated_at\":\"2021-11-12T15:18:05.000000Z\"}]', 'index', 1, '2021-11-12 22:09:39', '2021-11-12 22:09:39'),
+(461, 'Acesso: validador.index', '[{\"id\":2,\"nome\":\"JUCEAAASE\",\"url\":\"https:\\/\\/www.jucese.se.gov.br\\/\",\"status_code\":null,\"resposta\":null,\"url_verified_at\":null,\"user_id\":1,\"created_at\":\"2021-11-12T15:18:05.000000Z\",\"updated_at\":\"2021-11-12T15:18:05.000000Z\"}]', 'index', 1, '2021-11-12 22:09:48', '2021-11-12 22:09:48'),
+(462, 'Acesso: validador.index', '[{\"id\":2,\"nome\":\"JUCEAAASE\",\"url\":\"https:\\/\\/www.jucese.se.gov.br\\/\",\"status_code\":null,\"resposta\":null,\"url_verified_at\":null,\"user_id\":1,\"created_at\":\"2021-11-12T15:18:05.000000Z\",\"updated_at\":\"2021-11-12T15:18:05.000000Z\"}]', 'index', 1, '2021-11-12 22:09:54', '2021-11-12 22:09:54'),
+(463, 'Acesso: validador.index', '[{\"id\":2,\"nome\":\"JUCESE\",\"url\":\"https:\\/\\/www.jucese.se.gov.br\\/\",\"status_code\":null,\"resposta\":null,\"url_verified_at\":null,\"user_id\":1,\"created_at\":\"2021-11-12T15:18:05.000000Z\",\"updated_at\":\"2021-11-12T15:18:05.000000Z\"}]', 'index', 1, '2021-11-12 22:10:11', '2021-11-12 22:10:11'),
+(464, 'Acesso: validador.index', '[{\"id\":2,\"nome\":\"JUCESE\",\"url\":\"https:\\/\\/www.jucese.se.gov.br\\/\",\"status_code\":null,\"resposta\":null,\"url_verified_at\":null,\"user_id\":1,\"created_at\":\"2021-11-12T15:18:05.000000Z\",\"updated_at\":\"2021-11-12T15:18:05.000000Z\"}]', 'index', 1, '2021-11-12 22:21:55', '2021-11-12 22:21:55'),
+(465, 'Erro: validador.show', 'SQLSTATE[23000]: Integrity constraint violation: 1048 Column \'conteudo\' cannot be null (SQL: insert into `conveniados_logs` (`local`, `conteudo`, `operacao`, `user_id`, `updated_at`, `created_at`) values (Acesso: validador.show, ?, show, 1, 2021-11-12 19:21:58, 2021-11-12 19:21:58))', 'show', 1, '2021-11-12 22:21:58', '2021-11-12 22:21:58'),
+(466, 'Acesso: validador.index', '[{\"id\":2,\"nome\":\"JUCESE\",\"url\":\"https:\\/\\/www.jucese.se.gov.br\\/\",\"status_code\":null,\"resposta\":null,\"url_verified_at\":null,\"user_id\":1,\"created_at\":\"2021-11-12T15:18:05.000000Z\",\"updated_at\":\"2021-11-12T15:18:05.000000Z\"}]', 'index', 1, '2021-11-12 22:21:59', '2021-11-12 22:21:59'),
+(467, 'Acesso: validador.index', '[{\"id\":2,\"nome\":\"JUCESE\",\"url\":\"https:\\/\\/www.jucese.se.gov.br\\/\",\"status_code\":null,\"resposta\":null,\"url_verified_at\":null,\"user_id\":1,\"created_at\":\"2021-11-12T15:18:05.000000Z\",\"updated_at\":\"2021-11-12T15:18:05.000000Z\"}]', 'index', 1, '2021-11-12 22:23:36', '2021-11-12 22:23:36'),
+(468, 'Erro: validador.show', 'SQLSTATE[23000]: Integrity constraint violation: 1048 Column \'conteudo\' cannot be null (SQL: insert into `conveniados_logs` (`local`, `conteudo`, `operacao`, `user_id`, `updated_at`, `created_at`) values (Acesso: validador.show, ?, show, 1, 2021-11-12 19:23:38, 2021-11-12 19:23:38))', 'show', 1, '2021-11-12 22:23:38', '2021-11-12 22:23:38'),
+(469, 'Acesso: validador.index', '[{\"id\":2,\"nome\":\"JUCESE\",\"url\":\"https:\\/\\/www.jucese.se.gov.br\\/\",\"status_code\":null,\"resposta\":null,\"url_verified_at\":null,\"user_id\":1,\"created_at\":\"2021-11-12T15:18:05.000000Z\",\"updated_at\":\"2021-11-12T15:18:05.000000Z\"}]', 'index', 1, '2021-11-12 22:23:39', '2021-11-12 22:23:39'),
+(470, 'Erro: validador.show', 'SQLSTATE[23000]: Integrity constraint violation: 1048 Column \'conteudo\' cannot be null (SQL: insert into `conveniados_logs` (`local`, `conteudo`, `operacao`, `user_id`, `updated_at`, `created_at`) values (Acesso: validador.show, ?, show, 1, 2021-11-12 19:23:48, 2021-11-12 19:23:48))', 'show', 1, '2021-11-12 22:23:48', '2021-11-12 22:23:48'),
+(471, 'Acesso: validador.index', '[{\"id\":2,\"nome\":\"JUCESE\",\"url\":\"https:\\/\\/www.jucese.se.gov.br\\/\",\"status_code\":null,\"resposta\":null,\"url_verified_at\":null,\"user_id\":1,\"created_at\":\"2021-11-12T15:18:05.000000Z\",\"updated_at\":\"2021-11-12T15:18:05.000000Z\"}]', 'index', 1, '2021-11-12 22:23:49', '2021-11-12 22:23:49'),
+(472, 'Erro: validador.show', 'SQLSTATE[23000]: Integrity constraint violation: 1048 Column \'conteudo\' cannot be null (SQL: insert into `conveniados_logs` (`local`, `conteudo`, `operacao`, `user_id`, `updated_at`, `created_at`) values (Acesso: validador.show, ?, show, 1, 2021-11-12 19:23:56, 2021-11-12 19:23:56))', 'show', 1, '2021-11-12 22:23:56', '2021-11-12 22:23:56'),
+(473, 'Acesso: validador.index', '[{\"id\":2,\"nome\":\"JUCESE\",\"url\":\"https:\\/\\/www.jucese.se.gov.br\\/\",\"status_code\":null,\"resposta\":null,\"url_verified_at\":null,\"user_id\":1,\"created_at\":\"2021-11-12T15:18:05.000000Z\",\"updated_at\":\"2021-11-12T15:18:05.000000Z\"}]', 'index', 1, '2021-11-12 22:23:57', '2021-11-12 22:23:57'),
+(474, 'Erro: validador.show', 'SQLSTATE[23000]: Integrity constraint violation: 1048 Column \'conteudo\' cannot be null (SQL: insert into `conveniados_logs` (`local`, `conteudo`, `operacao`, `user_id`, `updated_at`, `created_at`) values (Acesso: validador.show, ?, show, 1, 2021-11-12 19:24:45, 2021-11-12 19:24:45))', 'show', 1, '2021-11-12 22:24:45', '2021-11-12 22:24:45'),
+(475, 'Acesso: validador.index', '[{\"id\":2,\"nome\":\"JUCESE\",\"url\":\"https:\\/\\/www.jucese.se.gov.br\\/\",\"status_code\":null,\"resposta\":null,\"url_verified_at\":null,\"user_id\":1,\"created_at\":\"2021-11-12T15:18:05.000000Z\",\"updated_at\":\"2021-11-12T15:18:05.000000Z\"}]', 'index', 1, '2021-11-12 22:24:45', '2021-11-12 22:24:45'),
+(476, 'Erro: validador.show', 'SQLSTATE[23000]: Integrity constraint violation: 1048 Column \'conteudo\' cannot be null (SQL: insert into `conveniados_logs` (`local`, `conteudo`, `operacao`, `user_id`, `updated_at`, `created_at`) values (Acesso: validador.show, ?, show, 1, 2021-11-12 19:24:49, 2021-11-12 19:24:49))', 'show', 1, '2021-11-12 22:24:49', '2021-11-12 22:24:49'),
+(477, 'Acesso: validador.index', '[{\"id\":2,\"nome\":\"JUCESE\",\"url\":\"https:\\/\\/www.jucese.se.gov.br\\/\",\"status_code\":null,\"resposta\":null,\"url_verified_at\":null,\"user_id\":1,\"created_at\":\"2021-11-12T15:18:05.000000Z\",\"updated_at\":\"2021-11-12T15:18:05.000000Z\"}]', 'index', 1, '2021-11-12 22:24:49', '2021-11-12 22:24:49'),
+(478, 'Erro: validador.show', 'SQLSTATE[23000]: Integrity constraint violation: 1048 Column \'conteudo\' cannot be null (SQL: insert into `conveniados_logs` (`local`, `conteudo`, `operacao`, `user_id`, `updated_at`, `created_at`) values (Acesso: validador.show, ?, show, 1, 2021-11-12 19:35:38, 2021-11-12 19:35:38))', 'show', 1, '2021-11-12 22:35:38', '2021-11-12 22:35:38'),
+(479, 'Acesso: validador.index', '[{\"id\":2,\"nome\":\"JUCESE\",\"url\":\"https:\\/\\/www.jucese.se.gov.br\\/\",\"status_code\":null,\"resposta\":null,\"url_verified_at\":null,\"user_id\":1,\"created_at\":\"2021-11-12T15:18:05.000000Z\",\"updated_at\":\"2021-11-12T15:18:05.000000Z\"}]', 'index', 1, '2021-11-12 22:35:39', '2021-11-12 22:35:39'),
+(480, 'Acesso: validador.index', '[{\"id\":2,\"nome\":\"JUCESE\",\"url\":\"https:\\/\\/www.jucese.se.gov.br\\/\",\"status_code\":null,\"resposta\":null,\"url_verified_at\":null,\"user_id\":1,\"created_at\":\"2021-11-12T15:18:05.000000Z\",\"updated_at\":\"2021-11-12T15:18:05.000000Z\"}]', 'index', 1, '2021-11-12 22:37:14', '2021-11-12 22:37:14'),
+(481, 'Acesso: validador.show', '{\"id\":2,\"nome\":\"JUCESE\",\"url\":\"https:\\/\\/www.jucese.se.gov.br\\/\",\"status_code\":null,\"resposta\":null,\"url_verified_at\":null,\"user_id\":1,\"created_at\":\"2021-11-12T15:18:05.000000Z\",\"updated_at\":\"2021-11-12T15:18:05.000000Z\"}', 'show', 1, '2021-11-12 22:37:16', '2021-11-12 22:37:16'),
+(482, 'Acesso: validador.edit', '{\"id\":2,\"nome\":\"JUCESE\",\"url\":\"https:\\/\\/www.jucese.se.gov.br\\/\",\"status_code\":null,\"resposta\":null,\"url_verified_at\":null,\"user_id\":1,\"created_at\":\"2021-11-12T15:18:05.000000Z\",\"updated_at\":\"2021-11-12T15:18:05.000000Z\"}', 'edit', 1, '2021-11-12 22:37:20', '2021-11-12 22:37:20'),
+(483, 'Acesso: /contausuario', 'acesso ao sistema', 'login', 3, '2021-11-13 06:27:07', '2021-11-13 06:27:07'),
+(484, 'Acesso: /contausuario', 'acesso ao sistema', 'login', 3, '2021-11-13 06:27:22', '2021-11-13 06:27:22'),
+(485, 'Acesso: validador.index', '[]', 'index', 3, '2021-11-13 06:28:14', '2021-11-13 06:28:14'),
+(486, 'Acesso: validador.index', '[]', 'index', 3, '2021-11-13 06:32:52', '2021-11-13 06:32:52'),
+(487, 'Acesso: validador.index', '[]', 'index', 3, '2021-11-13 06:33:00', '2021-11-13 06:33:00'),
+(488, 'Acesso: validador.index', '[]', 'index', 3, '2021-11-13 06:33:30', '2021-11-13 06:33:30'),
+(489, 'Acesso: validador.index', '[]', 'index', 3, '2021-11-13 06:34:51', '2021-11-13 06:34:51'),
+(490, 'Acesso: validador.index', '[]', 'index', 3, '2021-11-13 06:35:05', '2021-11-13 06:35:05'),
+(491, 'Acesso: /contausuario', 'acesso ao sistema', 'login', 1, '2021-11-13 06:41:34', '2021-11-13 06:41:34'),
+(492, 'Acesso: validador.index', '[{\"id\":2,\"nome\":\"JUCESE\",\"url\":\"https:\\/\\/www.jucese.se.gov.br\\/\",\"status_code\":\"200\",\"resposta\":\"text\\/html; charset=UTF-8\",\"url_verified_at\":\"2021-11-12 20:08:01\",\"user_id\":1,\"created_at\":\"2021-11-12T15:18:05.000000Z\",\"updated_at\":\"2021-11-12T20:08:01.000000Z\"}]', 'index', 1, '2021-11-13 06:41:39', '2021-11-13 06:41:39'),
+(493, 'Acesso: validador.show', '{\"id\":2,\"nome\":\"JUCESE\",\"url\":\"https:\\/\\/www.jucese.se.gov.br\\/\",\"status_code\":\"200\",\"resposta\":\"text\\/html; charset=UTF-8\",\"url_verified_at\":\"2021-11-12 20:08:01\",\"user_id\":1,\"created_at\":\"2021-11-12T15:18:05.000000Z\",\"updated_at\":\"2021-11-12T20:08:01.000000Z\"}', 'show', 1, '2021-11-13 06:41:50', '2021-11-13 06:41:50'),
+(494, 'Acesso: validador.edit', '{\"id\":2,\"nome\":\"JUCESE\",\"url\":\"https:\\/\\/www.jucese.se.gov.br\\/\",\"status_code\":\"200\",\"resposta\":\"text\\/html; charset=UTF-8\",\"url_verified_at\":\"2021-11-12 20:08:01\",\"user_id\":1,\"created_at\":\"2021-11-12T15:18:05.000000Z\",\"updated_at\":\"2021-11-12T20:08:01.000000Z\"}', 'edit', 1, '2021-11-13 06:42:06', '2021-11-13 06:42:06'),
+(495, 'Acesso: validador.update', 'Atualização de URL', 'update', 1, '2021-11-13 06:42:09', '2021-11-13 06:42:09'),
+(496, 'Acesso: validador.index', '[{\"id\":2,\"nome\":\"JUCESE\",\"url\":\"https:\\/\\/www.jucese.se.gov.br\\/\",\"status_code\":\"200\",\"resposta\":\"text\\/html; charset=UTF-8\",\"url_verified_at\":\"2021-11-12 20:08:01\",\"user_id\":1,\"created_at\":\"2021-11-12T15:18:05.000000Z\",\"updated_at\":\"2021-11-13T03:42:09.000000Z\"}]', 'index', 1, '2021-11-13 06:42:10', '2021-11-13 06:42:10'),
+(497, 'Acesso: validador.show', '{\"id\":2,\"nome\":\"JUCESE\",\"url\":\"https:\\/\\/www.jucese.se.gov.br\\/\",\"status_code\":\"200\",\"resposta\":\"text\\/html; charset=UTF-8\",\"url_verified_at\":\"2021-11-12 20:08:01\",\"user_id\":1,\"created_at\":\"2021-11-12T15:18:05.000000Z\",\"updated_at\":\"2021-11-13T03:42:09.000000Z\"}', 'show', 1, '2021-11-13 06:42:44', '2021-11-13 06:42:44'),
+(498, 'Acesso: validador.index', '[{\"id\":2,\"nome\":\"JUCESE\",\"url\":\"https:\\/\\/www.jucese.se.gov.br\\/\",\"status_code\":\"200\",\"resposta\":\"text\\/html; charset=UTF-8\",\"url_verified_at\":\"2021-11-12 20:08:01\",\"user_id\":1,\"created_at\":\"2021-11-12T15:18:05.000000Z\",\"updated_at\":\"2021-11-13T03:42:09.000000Z\"}]', 'index', 1, '2021-11-13 06:43:57', '2021-11-13 06:43:57'),
+(499, 'Acesso: validador.index', '[{\"id\":2,\"nome\":\"JUCESE\",\"url\":\"https:\\/\\/www.jucese.se.gov.br\\/\",\"status_code\":\"200\",\"resposta\":\"200\",\"url_verified_at\":\"2021-11-13 03:55:23\",\"user_id\":1,\"created_at\":\"2021-11-12T15:18:05.000000Z\",\"updated_at\":\"2021-11-13T03:55:23.000000Z\"}]', 'index', 1, '2021-11-13 06:55:30', '2021-11-13 06:55:30'),
+(500, 'Acesso: validador.index', '[{\"id\":2,\"nome\":\"JUCESE\",\"url\":\"https:\\/\\/www.jucese.se.gov.br\\/\",\"status_code\":\"200\",\"resposta\":\"200\",\"url_verified_at\":\"2021-11-13 03:55:23\",\"user_id\":1,\"created_at\":\"2021-11-12T15:18:05.000000Z\",\"updated_at\":\"2021-11-13T03:55:23.000000Z\"}]', 'index', 1, '2021-11-13 07:27:56', '2021-11-13 07:27:56'),
+(501, 'Acesso: validador.index', '[{\"id\":2,\"nome\":\"JUCESE\",\"url\":\"https:\\/\\/www.jucese.se.gov.br\\/\",\"status_code\":\"200\",\"resposta\":\"text\\/html; charset=UTF-8\",\"url_verified_at\":\"2021-11-13 04:28:47\",\"user_id\":1,\"created_at\":\"2021-11-12T15:18:05.000000Z\",\"updated_at\":\"2021-11-13T04:28:47.000000Z\"}]', 'index', 1, '2021-11-13 07:28:53', '2021-11-13 07:28:53'),
+(502, 'Acesso: validador.show', '{\"id\":2,\"nome\":\"JUCESE\",\"url\":\"https:\\/\\/www.jucese.se.gov.br\\/\",\"status_code\":\"200\",\"resposta\":\"text\\/html; charset=UTF-8\",\"url_verified_at\":\"2021-11-13 04:28:47\",\"user_id\":1,\"created_at\":\"2021-11-12T15:18:05.000000Z\",\"updated_at\":\"2021-11-13T04:28:47.000000Z\"}', 'show', 1, '2021-11-13 07:29:03', '2021-11-13 07:29:03'),
+(503, 'Acesso: validador.show', '{\"id\":2,\"nome\":\"JUCESE\",\"url\":\"https:\\/\\/www.jucese.se.gov.br\\/\",\"status_code\":\"200\",\"resposta\":\"text\\/html; charset=UTF-8\",\"url_verified_at\":\"2021-11-13 04:28:47\",\"user_id\":1,\"created_at\":\"2021-11-12T15:18:05.000000Z\",\"updated_at\":\"2021-11-13T04:28:47.000000Z\"}', 'show', 1, '2021-11-13 07:30:15', '2021-11-13 07:30:15'),
+(504, 'Acesso: /contausuario', 'acesso ao sistema', 'login', 3, '2021-11-13 07:35:32', '2021-11-13 07:35:32'),
+(505, 'Acesso: validador.index', '[]', 'index', 3, '2021-11-13 07:35:37', '2021-11-13 07:35:37'),
+(506, 'Acesso: /contausuario', 'acesso ao sistema', 'login', 1, '2021-11-13 07:38:53', '2021-11-13 07:38:53'),
+(507, 'Acesso: usuario.listar', '[{\"id\":1,\"name\":\"Andrius Prado Silva\",\"email\":\"andrius.prado@jucese.se.gov.br\",\"cargo\":\"Programador\",\"email_verified_at\":null,\"ramal\":\"4137\",\"setor_id\":1,\"avatar\":\"andrius.prado@jucese.se.gov.br.jpg\",\"created_at\":\"2019-08-19T15:36:57.000000Z\",\"updated_at\":\"2021-09-03T14:05:58.000000Z\",\"grupoid\":10,\"orgaoid\":1,\"ativo\":1},{\"id\":2,\"name\":\"Guttemberg Dantas Fernandes\",\"email\":\"guttemberg.dantas@jucese.se.gov.br\",\"cargo\":\"Programador\",\"email_verified_at\":null,\"ramal\":\"4140\",\"setor_id\":1,\"avatar\":\"guttemberg.dantas@jucese.se.gov.br.jpg\",\"created_at\":\"2021-09-03T14:35:45.000000Z\",\"updated_at\":\"2021-09-20T12:06:53.000000Z\",\"grupoid\":10,\"orgaoid\":2,\"ativo\":1},{\"id\":3,\"name\":\"Andrius Prado\",\"email\":\"andrius.prado@sead.se.gov.br\",\"cargo\":null,\"email_verified_at\":null,\"ramal\":null,\"setor_id\":null,\"avatar\":null,\"created_at\":\"2021-11-13T03:23:27.000000Z\",\"updated_at\":\"2021-11-13T03:23:27.000000Z\",\"grupoid\":10,\"orgaoid\":1,\"ativo\":1},{\"id\":4,\"name\":\"VICTOR OBERDAN ALVES REZENDE\",\"email\":\"victor.rezende@sead.se.gov.br\",\"cargo\":null,\"email_verified_at\":null,\"ramal\":null,\"setor_id\":null,\"avatar\":null,\"created_at\":\"2021-11-13T03:26:49.000000Z\",\"updated_at\":\"2021-11-13T03:26:49.000000Z\",\"grupoid\":10,\"orgaoid\":1,\"ativo\":1}]', 'index', 1, '2021-11-13 07:38:53', '2021-11-13 07:38:53'),
+(508, 'Acesso: usuario.listar', '[{\"id\":1,\"name\":\"Andrius Prado Silva\",\"email\":\"andrius.prado@jucese.se.gov.br\",\"cargo\":\"Programador\",\"email_verified_at\":null,\"ramal\":\"4137\",\"setor_id\":1,\"avatar\":\"andrius.prado@jucese.se.gov.br.jpg\",\"created_at\":\"2019-08-19T15:36:57.000000Z\",\"updated_at\":\"2021-09-03T14:05:58.000000Z\",\"grupoid\":10,\"orgaoid\":1,\"ativo\":1},{\"id\":2,\"name\":\"Guttemberg Dantas Fernandes\",\"email\":\"guttemberg.dantas@jucese.se.gov.br\",\"cargo\":\"Programador\",\"email_verified_at\":null,\"ramal\":\"4140\",\"setor_id\":1,\"avatar\":\"guttemberg.dantas@jucese.se.gov.br.jpg\",\"created_at\":\"2021-09-03T14:35:45.000000Z\",\"updated_at\":\"2021-09-20T12:06:53.000000Z\",\"grupoid\":10,\"orgaoid\":2,\"ativo\":1},{\"id\":3,\"name\":\"Andrius Prado\",\"email\":\"andrius.prado@sead.se.gov.br\",\"cargo\":null,\"email_verified_at\":null,\"ramal\":null,\"setor_id\":null,\"avatar\":null,\"created_at\":\"2021-11-13T03:23:27.000000Z\",\"updated_at\":\"2021-11-13T03:23:27.000000Z\",\"grupoid\":10,\"orgaoid\":1,\"ativo\":1},{\"id\":4,\"name\":\"VICTOR OBERDAN ALVES REZENDE\",\"email\":\"victor.rezende@sead.se.gov.br\",\"cargo\":null,\"email_verified_at\":null,\"ramal\":null,\"setor_id\":null,\"avatar\":null,\"created_at\":\"2021-11-13T03:26:49.000000Z\",\"updated_at\":\"2021-11-13T03:26:49.000000Z\",\"grupoid\":10,\"orgaoid\":1,\"ativo\":1}]', 'index', 1, '2021-11-13 07:41:48', '2021-11-13 07:41:48'),
+(509, 'Acesso: usuario.listar', '[{\"id\":1,\"name\":\"Andrius Prado Silva\",\"email\":\"andrius.prado@jucese.se.gov.br\",\"cargo\":\"Programador\",\"email_verified_at\":null,\"ramal\":\"4137\",\"setor_id\":1,\"avatar\":\"andrius.prado@jucese.se.gov.br.jpg\",\"created_at\":\"2019-08-19T15:36:57.000000Z\",\"updated_at\":\"2021-09-03T14:05:58.000000Z\",\"grupoid\":10,\"orgaoid\":1,\"ativo\":1},{\"id\":2,\"name\":\"Guttemberg Dantas Fernandes\",\"email\":\"guttemberg.dantas@jucese.se.gov.br\",\"cargo\":\"Programador\",\"email_verified_at\":null,\"ramal\":\"4140\",\"setor_id\":1,\"avatar\":\"guttemberg.dantas@jucese.se.gov.br.jpg\",\"created_at\":\"2021-09-03T14:35:45.000000Z\",\"updated_at\":\"2021-09-20T12:06:53.000000Z\",\"grupoid\":10,\"orgaoid\":2,\"ativo\":1},{\"id\":3,\"name\":\"Andrius Prado\",\"email\":\"andrius.prado@sead.se.gov.br\",\"cargo\":null,\"email_verified_at\":null,\"ramal\":null,\"setor_id\":null,\"avatar\":null,\"created_at\":\"2021-11-13T03:23:27.000000Z\",\"updated_at\":\"2021-11-13T03:23:27.000000Z\",\"grupoid\":10,\"orgaoid\":1,\"ativo\":1},{\"id\":4,\"name\":\"VICTOR OBERDAN ALVES REZENDE\",\"email\":\"victor.rezende@sead.se.gov.br\",\"cargo\":null,\"email_verified_at\":null,\"ramal\":null,\"setor_id\":null,\"avatar\":null,\"created_at\":\"2021-11-13T03:26:49.000000Z\",\"updated_at\":\"2021-11-13T03:26:49.000000Z\",\"grupoid\":10,\"orgaoid\":1,\"ativo\":1}]', 'index', 1, '2021-11-13 07:43:10', '2021-11-13 07:43:10'),
+(510, 'Acesso: validador.index', '[{\"id\":2,\"nome\":\"JUCESE\",\"url\":\"https:\\/\\/www.jucese.se.gov.br\\/\",\"status_code\":\"200\",\"resposta\":\"text\\/html; charset=UTF-8\",\"url_verified_at\":\"2021-11-13 04:28:47\",\"user_id\":1,\"created_at\":\"2021-11-12T15:18:05.000000Z\",\"updated_at\":\"2021-11-13T04:28:47.000000Z\"}]', 'index', 1, '2021-11-13 07:43:16', '2021-11-13 07:43:16'),
+(511, 'Acesso: validador.index', '[{\"id\":2,\"nome\":\"JUCESE\",\"url\":\"https:\\/\\/www.jucese.se.gov.br\\/\",\"status_code\":\"200\",\"resposta\":\"text\\/html; charset=UTF-8\",\"url_verified_at\":\"2021-11-13 04:28:47\",\"user_id\":1,\"created_at\":\"2021-11-12T15:18:05.000000Z\",\"updated_at\":\"2021-11-13T04:28:47.000000Z\"}]', 'index', 1, '2021-11-13 07:43:26', '2021-11-13 07:43:26'),
+(512, 'Acesso: validador.show', '{\"id\":2,\"nome\":\"JUCESE\",\"url\":\"https:\\/\\/www.jucese.se.gov.br\\/\",\"status_code\":\"200\",\"resposta\":\"text\\/html; charset=UTF-8\",\"url_verified_at\":\"2021-11-13 04:28:47\",\"user_id\":1,\"created_at\":\"2021-11-12T15:18:05.000000Z\",\"updated_at\":\"2021-11-13T04:28:47.000000Z\"}', 'show', 1, '2021-11-13 07:43:28', '2021-11-13 07:43:28'),
+(513, 'Acesso: validador.edit', '{\"id\":2,\"nome\":\"JUCESE\",\"url\":\"https:\\/\\/www.jucese.se.gov.br\\/\",\"status_code\":\"200\",\"resposta\":\"text\\/html; charset=UTF-8\",\"url_verified_at\":\"2021-11-13 04:28:47\",\"user_id\":1,\"created_at\":\"2021-11-12T15:18:05.000000Z\",\"updated_at\":\"2021-11-13T04:28:47.000000Z\"}', 'edit', 1, '2021-11-13 07:43:32', '2021-11-13 07:43:32'),
+(514, 'Acesso: contausuario.update', 'Atualizar Conta Usuário: {\"id\":1,\"name\":\"Andrius Prado Silva asd\",\"email\":\"andrius.prado@jucese.se.gov.br\",\"cargo\":\"Programador\",\"email_verified_at\":null,\"ramal\":\"4137\",\"setor_id\":1,\"avatar\":\"andrius.prado@jucese.se.gov.br.jpg\",\"created_at\":\"2019-08-19T15:36:57.000000Z\",\"updated_at\":\"2021-11-13T04:43:44.000000Z\",\"grupoid\":10,\"orgaoid\":1,\"ativo\":1}', 'update', 1, '2021-11-13 07:43:44', '2021-11-13 07:43:44'),
+(515, 'Acesso: validador.index', '[{\"id\":2,\"nome\":\"JUCESE\",\"url\":\"https:\\/\\/www.jucese.se.gov.br\\/\",\"status_code\":\"200\",\"resposta\":\"text\\/html; charset=UTF-8\",\"url_verified_at\":\"2021-11-13 04:28:47\",\"user_id\":1,\"created_at\":\"2021-11-12T15:18:05.000000Z\",\"updated_at\":\"2021-11-13T04:28:47.000000Z\"}]', 'index', 1, '2021-11-13 07:43:50', '2021-11-13 07:43:50'),
+(516, 'Acesso: validador.index', '[{\"id\":2,\"nome\":\"JUCESE\",\"url\":\"https:\\/\\/www.jucese.se.gov.br\\/\",\"status_code\":\"200\",\"resposta\":\"text\\/html; charset=UTF-8\",\"url_verified_at\":\"2021-11-13 04:28:47\",\"user_id\":1,\"created_at\":\"2021-11-12T15:18:05.000000Z\",\"updated_at\":\"2021-11-13T04:28:47.000000Z\"}]', 'index', 1, '2021-11-13 08:01:32', '2021-11-13 08:01:32'),
+(517, 'Acesso: validador.index', '[{\"id\":2,\"nome\":\"JUCESE\",\"url\":\"https:\\/\\/www.jucese.se.gov.br\\/\",\"status_code\":\"200\",\"resposta\":\"text\\/html; charset=UTF-8\",\"url_verified_at\":\"2021-11-13 04:28:47\",\"user_id\":1,\"created_at\":\"2021-11-12T15:18:05.000000Z\",\"updated_at\":\"2021-11-13T04:28:47.000000Z\"}]', 'index', 1, '2021-11-13 08:05:07', '2021-11-13 08:05:07'),
+(518, 'Acesso: validador.index', '[{\"id\":2,\"nome\":\"JUCESE\",\"url\":\"https:\\/\\/www.jucese.se.gov.br\\/\",\"status_code\":\"200\",\"resposta\":\"text\\/html; charset=UTF-8\",\"url_verified_at\":\"2021-11-13 04:28:47\",\"user_id\":1,\"created_at\":\"2021-11-12T15:18:05.000000Z\",\"updated_at\":\"2021-11-13T04:28:47.000000Z\"}]', 'index', 1, '2021-11-13 08:16:59', '2021-11-13 08:16:59'),
+(519, 'Acesso: validador.index', '[{\"id\":2,\"nome\":\"JUCESE\",\"url\":\"https:\\/\\/www.jucese.se.gov.br\\/\",\"status_code\":\"200\",\"resposta\":\"text\\/html; charset=UTF-8\",\"url_verified_at\":\"2021-11-13 04:28:47\",\"user_id\":1,\"created_at\":\"2021-11-12T15:18:05.000000Z\",\"updated_at\":\"2021-11-13T04:28:47.000000Z\"}]', 'index', 1, '2021-11-13 08:27:36', '2021-11-13 08:27:36'),
+(520, 'Acesso: validador.index', '[{\"id\":2,\"nome\":\"JUCESE\",\"url\":\"https:\\/\\/www.jucese.se.gov.br\\/\",\"status_code\":\"200\",\"resposta\":\"text\\/html; charset=UTF-8\",\"url_verified_at\":\"2021-11-13 04:28:47\",\"user_id\":1,\"created_at\":\"2021-11-12T15:18:05.000000Z\",\"updated_at\":\"2021-11-13T04:28:47.000000Z\"}]', 'index', 1, '2021-11-13 08:28:06', '2021-11-13 08:28:06'),
+(521, 'Acesso: validador.index', '[{\"id\":2,\"nome\":\"JUCESE\",\"url\":\"https:\\/\\/www.jucese.se.gov.br\\/\",\"status_code\":\"200\",\"resposta\":\"text\\/html; charset=UTF-8\",\"url_verified_at\":\"2021-11-13 04:28:47\",\"user_id\":1,\"created_at\":\"2021-11-12T15:18:05.000000Z\",\"updated_at\":\"2021-11-13T04:28:47.000000Z\"}]', 'index', 1, '2021-11-13 08:29:39', '2021-11-13 08:29:39'),
+(522, 'Acesso: validador.index', '[{\"id\":2,\"nome\":\"JUCESE\",\"url\":\"https:\\/\\/www.jucese.se.gov.br\\/\",\"status_code\":\"200\",\"resposta\":\"text\\/html; charset=UTF-8\",\"url_verified_at\":\"2021-11-13 04:28:47\",\"user_id\":1,\"created_at\":\"2021-11-12T15:18:05.000000Z\",\"updated_at\":\"2021-11-13T04:28:47.000000Z\"}]', 'index', 1, '2021-11-13 08:30:11', '2021-11-13 08:30:11'),
+(523, 'Acesso: validador.index', '[{\"id\":2,\"nome\":\"JUCESE\",\"url\":\"https:\\/\\/www.jucese.se.gov.br\\/\",\"status_code\":\"200\",\"resposta\":\"text\\/html; charset=UTF-8\",\"url_verified_at\":\"2021-11-13 04:28:47\",\"user_id\":1,\"created_at\":\"2021-11-12T15:18:05.000000Z\",\"updated_at\":\"2021-11-13T04:28:47.000000Z\"}]', 'index', 1, '2021-11-13 08:30:49', '2021-11-13 08:30:49'),
+(524, 'Acesso: validador.show', '{\"id\":2,\"nome\":\"JUCESE\",\"url\":\"https:\\/\\/www.jucese.se.gov.br\\/\",\"status_code\":\"200\",\"resposta\":\"text\\/html; charset=UTF-8\",\"url_verified_at\":\"2021-11-13 04:28:47\",\"user_id\":1,\"created_at\":\"2021-11-12T15:18:05.000000Z\",\"updated_at\":\"2021-11-13T04:28:47.000000Z\"}', 'show', 1, '2021-11-13 08:31:02', '2021-11-13 08:31:02'),
+(525, 'Acesso: validador.index', '[{\"id\":2,\"nome\":\"JUCESE\",\"url\":\"https:\\/\\/www.jucese.se.gov.br\\/\",\"status_code\":\"200\",\"resposta\":\"text\\/html; charset=UTF-8\",\"url_verified_at\":\"2021-11-13 04:28:47\",\"user_id\":1,\"created_at\":\"2021-11-12T15:18:05.000000Z\",\"updated_at\":\"2021-11-13T04:28:47.000000Z\"}]', 'index', 1, '2021-11-13 08:31:56', '2021-11-13 08:31:56'),
+(526, 'Acesso: validador.index', '[{\"id\":2,\"nome\":\"JUCESE\",\"url\":\"https:\\/\\/www.jucese.se.gov.br\\/\",\"status_code\":\"200\",\"resposta\":\"text\\/html; charset=UTF-8\",\"url_verified_at\":\"2021-11-13 04:28:47\",\"user_id\":1,\"created_at\":\"2021-11-12T15:18:05.000000Z\",\"updated_at\":\"2021-11-13T04:28:47.000000Z\"}]', 'index', 1, '2021-11-13 08:33:11', '2021-11-13 08:33:11'),
+(527, 'Acesso: validador.index', '[{\"id\":2,\"nome\":\"JUCESE\",\"url\":\"https:\\/\\/www.jucese.se.gov.br\\/\",\"status_code\":\"200\",\"resposta\":\"text\\/html; charset=UTF-8\",\"url_verified_at\":\"2021-11-13 04:28:47\",\"user_id\":1,\"created_at\":\"2021-11-12T15:18:05.000000Z\",\"updated_at\":\"2021-11-13T04:28:47.000000Z\"}]', 'index', 1, '2021-11-13 08:33:30', '2021-11-13 08:33:30'),
+(528, 'Acesso: validador.create', 'Cadastro de URL', 'create', 1, '2021-11-13 08:33:53', '2021-11-13 08:33:53'),
+(529, 'Acesso: validador.store', 'Nova URL', 'store', 1, '2021-11-13 08:34:08', '2021-11-13 08:34:08'),
+(530, 'Acesso: validador.index', '[{\"id\":2,\"nome\":\"JUCESE\",\"url\":\"https:\\/\\/www.jucese.se.gov.br\\/\",\"status_code\":\"200\",\"resposta\":\"text\\/html; charset=UTF-8\",\"url_verified_at\":\"2021-11-13 04:28:47\",\"user_id\":1,\"created_at\":\"2021-11-12T15:18:05.000000Z\",\"updated_at\":\"2021-11-13T04:28:47.000000Z\"},{\"id\":4,\"nome\":\"TESTE\",\"url\":\"https:\\/\\/www.php.net\\/manual\\/pt_BR\\/function.curl-setopt.php\",\"status_code\":null,\"resposta\":null,\"url_verified_at\":null,\"user_id\":1,\"created_at\":\"2021-11-13T05:34:08.000000Z\",\"updated_at\":\"2021-11-13T05:34:08.000000Z\"}]', 'index', 1, '2021-11-13 08:34:08', '2021-11-13 08:34:08'),
+(531, 'Acesso: validador.index', '[{\"id\":2,\"nome\":\"JUCESE\",\"url\":\"https:\\/\\/www.jucese.se.gov.br\\/\",\"status_code\":\"200\",\"resposta\":\"text\\/html; charset=UTF-8\",\"url_verified_at\":\"2021-11-13 04:28:47\",\"user_id\":1,\"created_at\":\"2021-11-12T15:18:05.000000Z\",\"updated_at\":\"2021-11-13T04:28:47.000000Z\"},{\"id\":4,\"nome\":\"TESTE\",\"url\":\"https:\\/\\/www.php.net\\/manual\\/pt_BR\\/function.curl-setopt.php\",\"status_code\":\"0\",\"resposta\":null,\"url_verified_at\":null,\"user_id\":1,\"created_at\":\"2021-11-13T05:34:08.000000Z\",\"updated_at\":\"2021-11-13T05:34:08.000000Z\"}]', 'index', 1, '2021-11-13 08:37:31', '2021-11-13 08:37:31'),
+(532, 'Acesso: validador.index', '[{\"id\":2,\"nome\":\"JUCESE\",\"url\":\"https:\\/\\/www.jucese.se.gov.br\\/\",\"status_code\":\"200\",\"resposta\":\"text\\/html; charset=UTF-8\",\"url_verified_at\":\"2021-11-13 04:28:47\",\"user_id\":1,\"created_at\":\"2021-11-12T15:18:05.000000Z\",\"updated_at\":\"2021-11-13T04:28:47.000000Z\"},{\"id\":4,\"nome\":\"TESTE\",\"url\":\"https:\\/\\/www.php.net\\/manual\\/pt_BR\\/function.curl-setopt.php\",\"status_code\":\"0\",\"resposta\":null,\"url_verified_at\":null,\"user_id\":1,\"created_at\":\"2021-11-13T05:34:08.000000Z\",\"updated_at\":\"2021-11-13T05:34:08.000000Z\"}]', 'index', 1, '2021-11-13 08:40:59', '2021-11-13 08:40:59'),
+(533, 'Acesso: validador.index', '[{\"id\":2,\"nome\":\"JUCESE\",\"url\":\"https:\\/\\/www.jucese.se.gov.br\\/\",\"status_code\":\"200\",\"resposta\":\"text\\/html; charset=UTF-8\",\"url_verified_at\":\"2021-11-13 04:28:47\",\"user_id\":1,\"created_at\":\"2021-11-12T15:18:05.000000Z\",\"updated_at\":\"2021-11-13T04:28:47.000000Z\"},{\"id\":4,\"nome\":\"TESTE\",\"url\":\"https:\\/\\/www.php.net\\/manual\\/pt_BR\\/function.curl-setopt.php\",\"status_code\":\"0\",\"resposta\":null,\"url_verified_at\":null,\"user_id\":1,\"created_at\":\"2021-11-13T05:34:08.000000Z\",\"updated_at\":\"2021-11-13T05:34:08.000000Z\"}]', 'index', 1, '2021-11-13 08:47:25', '2021-11-13 08:47:25'),
+(534, 'Acesso: validador.index', '[{\"id\":2,\"nome\":\"JUCESE\",\"url\":\"https:\\/\\/www.jucese.se.gov.br\\/\",\"status_code\":\"200\",\"resposta\":\"text\\/html; charset=UTF-8\",\"url_verified_at\":\"2021-11-13 04:28:47\",\"user_id\":1,\"created_at\":\"2021-11-12T15:18:05.000000Z\",\"updated_at\":\"2021-11-13T04:28:47.000000Z\"},{\"id\":4,\"nome\":\"TESTE\",\"url\":\"https:\\/\\/www.php.net\\/manual\\/pt_BR\\/function.curl-setopt.php\",\"status_code\":\"0\",\"resposta\":null,\"url_verified_at\":null,\"user_id\":1,\"created_at\":\"2021-11-13T05:34:08.000000Z\",\"updated_at\":\"2021-11-13T05:34:08.000000Z\"}]', 'index', 1, '2021-11-13 08:48:40', '2021-11-13 08:48:40'),
+(535, 'Acesso: validador.index', '[{\"id\":2,\"nome\":\"JUCESE\",\"url\":\"https:\\/\\/www.jucese.se.gov.br\\/\",\"status_code\":\"200\",\"resposta\":\"text\\/html; charset=UTF-8\",\"url_verified_at\":\"2021-11-13 04:28:47\",\"user_id\":1,\"created_at\":\"2021-11-12T15:18:05.000000Z\",\"updated_at\":\"2021-11-13T04:28:47.000000Z\"},{\"id\":4,\"nome\":\"TESTE\",\"url\":\"https:\\/\\/www.php.net\\/manual\\/pt_BR\\/function.curl-setopt.php\",\"status_code\":\"0\",\"resposta\":null,\"url_verified_at\":null,\"user_id\":1,\"created_at\":\"2021-11-13T05:34:08.000000Z\",\"updated_at\":\"2021-11-13T05:34:08.000000Z\"}]', 'index', 1, '2021-11-13 08:49:03', '2021-11-13 08:49:03'),
+(536, 'Acesso: validador.index', '[{\"id\":2,\"nome\":\"JUCESE\",\"url\":\"https:\\/\\/www.jucese.se.gov.br\\/\",\"status_code\":\"200\",\"resposta\":\"text\\/html; charset=UTF-8\",\"url_verified_at\":\"2021-11-13 04:28:47\",\"user_id\":1,\"created_at\":\"2021-11-12T15:18:05.000000Z\",\"updated_at\":\"2021-11-13T04:28:47.000000Z\"},{\"id\":4,\"nome\":\"TESTE\",\"url\":\"https:\\/\\/www.php.net\\/manual\\/pt_BR\\/function.curl-setopt.php\",\"status_code\":\"0\",\"resposta\":null,\"url_verified_at\":null,\"user_id\":1,\"created_at\":\"2021-11-13T05:34:08.000000Z\",\"updated_at\":\"2021-11-13T05:34:08.000000Z\"}]', 'index', 1, '2021-11-13 08:50:53', '2021-11-13 08:50:53'),
+(537, 'Acesso: validador.index', '[{\"id\":2,\"nome\":\"JUCESE\",\"url\":\"https:\\/\\/www.jucese.se.gov.br\\/\",\"status_code\":\"200\",\"resposta\":\"text\\/html; charset=UTF-8\",\"url_verified_at\":\"2021-11-13 04:28:47\",\"user_id\":1,\"created_at\":\"2021-11-12T15:18:05.000000Z\",\"updated_at\":\"2021-11-13T04:28:47.000000Z\"},{\"id\":4,\"nome\":\"TESTE\",\"url\":\"https:\\/\\/www.php.net\\/manual\\/pt_BR\\/function.curl-setopt.php\",\"status_code\":\"0\",\"resposta\":null,\"url_verified_at\":null,\"user_id\":1,\"created_at\":\"2021-11-13T05:34:08.000000Z\",\"updated_at\":\"2021-11-13T05:34:08.000000Z\"}]', 'index', 1, '2021-11-13 08:51:36', '2021-11-13 08:51:36'),
+(538, 'Acesso: validador.index', '[{\"id\":2,\"nome\":\"JUCESE\",\"url\":\"https:\\/\\/www.jucese.se.gov.br\\/\",\"status_code\":\"200\",\"resposta\":\"text\\/html; charset=UTF-8\",\"url_verified_at\":\"2021-11-13 04:28:47\",\"user_id\":1,\"created_at\":\"2021-11-12T15:18:05.000000Z\",\"updated_at\":\"2021-11-13T04:28:47.000000Z\"},{\"id\":4,\"nome\":\"TESTE\",\"url\":\"https:\\/\\/www.php.net\\/manual\\/pt_BR\\/function.curl-setopt.php\",\"status_code\":\"0\",\"resposta\":null,\"url_verified_at\":null,\"user_id\":1,\"created_at\":\"2021-11-13T05:34:08.000000Z\",\"updated_at\":\"2021-11-13T05:34:08.000000Z\"}]', 'index', 1, '2021-11-13 08:55:06', '2021-11-13 08:55:06'),
+(539, 'Acesso: validador.index', '[{\"id\":2,\"nome\":\"JUCESE\",\"url\":\"https:\\/\\/www.jucese.se.gov.br\\/\",\"status_code\":\"200\",\"resposta\":\"text\\/html; charset=UTF-8\",\"url_verified_at\":\"2021-11-13 04:28:47\",\"user_id\":1,\"created_at\":\"2021-11-12T15:18:05.000000Z\",\"updated_at\":\"2021-11-13T04:28:47.000000Z\"},{\"id\":4,\"nome\":\"TESTE\",\"url\":\"https:\\/\\/www.php.net\\/manual\\/pt_BR\\/function.curl-setopt.php\",\"status_code\":\"0\",\"resposta\":null,\"url_verified_at\":null,\"user_id\":1,\"created_at\":\"2021-11-13T05:34:08.000000Z\",\"updated_at\":\"2021-11-13T05:34:08.000000Z\"}]', 'index', 1, '2021-11-13 08:55:35', '2021-11-13 08:55:35'),
+(540, 'Acesso: validador.index', '[{\"id\":2,\"nome\":\"JUCESE\",\"url\":\"https:\\/\\/www.jucese.se.gov.br\\/\",\"status_code\":\"200\",\"resposta\":\"text\\/html; charset=UTF-8\",\"url_verified_at\":\"2021-11-13 04:28:47\",\"user_id\":1,\"created_at\":\"2021-11-12T15:18:05.000000Z\",\"updated_at\":\"2021-11-13T04:28:47.000000Z\"},{\"id\":4,\"nome\":\"TESTE\",\"url\":\"https:\\/\\/www.php.net\\/manual\\/pt_BR\\/function.curl-setopt.php\",\"status_code\":\"0\",\"resposta\":null,\"url_verified_at\":null,\"user_id\":1,\"created_at\":\"2021-11-13T05:34:08.000000Z\",\"updated_at\":\"2021-11-13T05:34:08.000000Z\"}]', 'index', 1, '2021-11-13 08:56:13', '2021-11-13 08:56:13'),
+(541, 'Acesso: validador.index', '[{\"id\":2,\"nome\":\"JUCESE\",\"url\":\"https:\\/\\/www.jucese.se.gov.br\\/\",\"status_code\":\"200\",\"resposta\":\"text\\/html; charset=UTF-8\",\"url_verified_at\":\"2021-11-13 04:28:47\",\"user_id\":1,\"created_at\":\"2021-11-12T15:18:05.000000Z\",\"updated_at\":\"2021-11-13T04:28:47.000000Z\"},{\"id\":4,\"nome\":\"TESTE\",\"url\":\"https:\\/\\/www.php.net\\/manual\\/pt_BR\\/function.curl-setopt.php\",\"status_code\":\"0\",\"resposta\":null,\"url_verified_at\":null,\"user_id\":1,\"created_at\":\"2021-11-13T05:34:08.000000Z\",\"updated_at\":\"2021-11-13T05:34:08.000000Z\"}]', 'index', 1, '2021-11-13 08:56:53', '2021-11-13 08:56:53'),
+(542, 'Acesso: validador.index', '[{\"id\":2,\"nome\":\"JUCESE\",\"url\":\"https:\\/\\/www.jucese.se.gov.br\\/\",\"status_code\":\"200\",\"resposta\":\"text\\/html; charset=UTF-8\",\"url_verified_at\":\"2021-11-13 04:28:47\",\"user_id\":1,\"created_at\":\"2021-11-12T15:18:05.000000Z\",\"updated_at\":\"2021-11-13T04:28:47.000000Z\"},{\"id\":4,\"nome\":\"TESTE\",\"url\":\"https:\\/\\/www.php.net\\/manual\\/pt_BR\\/function.curl-setopt.php\",\"status_code\":\"0\",\"resposta\":null,\"url_verified_at\":null,\"user_id\":1,\"created_at\":\"2021-11-13T05:34:08.000000Z\",\"updated_at\":\"2021-11-13T05:34:08.000000Z\"}]', 'index', 1, '2021-11-13 09:00:32', '2021-11-13 09:00:32'),
+(543, 'Acesso: validador.index', '[{\"id\":2,\"nome\":\"JUCESE\",\"url\":\"https:\\/\\/www.jucese.se.gov.br\\/\",\"status_code\":\"200\",\"resposta\":\"text\\/html; charset=UTF-8\",\"url_verified_at\":\"2021-11-13 04:28:47\",\"user_id\":1,\"created_at\":\"2021-11-12T15:18:05.000000Z\",\"updated_at\":\"2021-11-13T04:28:47.000000Z\"},{\"id\":4,\"nome\":\"TESTE\",\"url\":\"https:\\/\\/www.php.net\\/manual\\/pt_BR\\/function.curl-setopt.php\",\"status_code\":\"0\",\"resposta\":null,\"url_verified_at\":null,\"user_id\":1,\"created_at\":\"2021-11-13T05:34:08.000000Z\",\"updated_at\":\"2021-11-13T05:34:08.000000Z\"}]', 'index', 1, '2021-11-13 09:03:44', '2021-11-13 09:03:44'),
+(544, 'Acesso: /contausuario', 'acesso ao sistema', 'login', 1, '2021-11-13 14:44:34', '2021-11-13 14:44:34'),
+(545, 'Acesso: validador.index', '[{\"id\":2,\"nome\":\"JUCESE\",\"url\":\"https:\\/\\/www.jucese.se.gov.br\\/\",\"status_code\":\"200\",\"resposta\":\"text\\/html; charset=UTF-8\",\"url_verified_at\":\"2021-11-13 04:28:47\",\"user_id\":1,\"created_at\":\"2021-11-12T15:18:05.000000Z\",\"updated_at\":\"2021-11-13T04:28:47.000000Z\"},{\"id\":4,\"nome\":\"TESTE\",\"url\":\"https:\\/\\/www.php.net\\/manual\\/pt_BR\\/function.curl-setopt.php\",\"status_code\":\"0\",\"resposta\":null,\"url_verified_at\":null,\"user_id\":1,\"created_at\":\"2021-11-13T05:34:08.000000Z\",\"updated_at\":\"2021-11-13T05:34:08.000000Z\"}]', 'index', 1, '2021-11-13 14:44:34', '2021-11-13 14:44:34'),
+(546, 'Acesso: validador.index', '[{\"id\":2,\"nome\":\"JUCESE\",\"url\":\"https:\\/\\/www.jucese.se.gov.br\\/\",\"status_code\":\"200\",\"resposta\":\"text\\/html; charset=UTF-8\",\"url_verified_at\":\"2021-11-13 04:28:47\",\"user_id\":1,\"created_at\":\"2021-11-12T15:18:05.000000Z\",\"updated_at\":\"2021-11-13T04:28:47.000000Z\"},{\"id\":4,\"nome\":\"TESTE\",\"url\":\"https:\\/\\/www.php.net\\/manual\\/pt_BR\\/function.curl-setopt.php\",\"status_code\":\"0\",\"resposta\":null,\"url_verified_at\":null,\"user_id\":1,\"created_at\":\"2021-11-13T05:34:08.000000Z\",\"updated_at\":\"2021-11-13T05:34:08.000000Z\"}]', 'index', 1, '2021-11-13 14:56:16', '2021-11-13 14:56:16'),
+(547, 'Acesso: validador.index', '[{\"id\":2,\"nome\":\"JUCESE\",\"url\":\"https:\\/\\/www.jucese.se.gov.br\\/\",\"status_code\":\"200\",\"resposta\":\"text\\/html; charset=UTF-8\",\"url_verified_at\":\"2021-11-13 04:28:47\",\"user_id\":1,\"created_at\":\"2021-11-12T15:18:05.000000Z\",\"updated_at\":\"2021-11-13T04:28:47.000000Z\"},{\"id\":4,\"nome\":\"TESTE\",\"url\":\"https:\\/\\/www.php.net\\/manual\\/pt_BR\\/function.curl-setopt.php\",\"status_code\":\"0\",\"resposta\":null,\"url_verified_at\":null,\"user_id\":1,\"created_at\":\"2021-11-13T05:34:08.000000Z\",\"updated_at\":\"2021-11-13T05:34:08.000000Z\"}]', 'index', 1, '2021-11-13 15:06:08', '2021-11-13 15:06:08'),
+(548, 'Acesso: validador.index', '[{\"id\":2,\"nome\":\"JUCESE\",\"url\":\"https:\\/\\/www.jucese.se.gov.br\\/\",\"status_code\":\"200\",\"resposta\":\"text\\/html; charset=UTF-8\",\"url_verified_at\":\"2021-11-13 04:28:47\",\"user_id\":1,\"created_at\":\"2021-11-12T15:18:05.000000Z\",\"updated_at\":\"2021-11-13T04:28:47.000000Z\"},{\"id\":4,\"nome\":\"TESTE\",\"url\":\"https:\\/\\/www.php.net\\/manual\\/pt_BR\\/function.curl-setopt.php\",\"status_code\":\"0\",\"resposta\":null,\"url_verified_at\":null,\"user_id\":1,\"created_at\":\"2021-11-13T05:34:08.000000Z\",\"updated_at\":\"2021-11-13T05:34:08.000000Z\"}]', 'index', 1, '2021-11-13 15:06:09', '2021-11-13 15:06:09'),
+(549, 'Acesso: /contausuario', 'acesso ao sistema', 'login', 1, '2021-11-14 04:04:49', '2021-11-14 04:04:49'),
+(550, 'Acesso: contausuario.update', 'Atualizar Conta Usuário: {\"id\":1,\"name\":\"Andrius Prado Silva\",\"email\":\"andrius.prado@jucese.se.gov.br\",\"cargo\":\"Programador\",\"email_verified_at\":null,\"ramal\":\"4137\",\"setor_id\":1,\"avatar\":\"andrius.prado@jucese.se.gov.br.jpg\",\"created_at\":\"2019-08-19T15:36:57.000000Z\",\"updated_at\":\"2021-11-14T01:04:58.000000Z\",\"grupoid\":10,\"orgaoid\":1,\"ativo\":1}', 'update', 1, '2021-11-14 04:04:58', '2021-11-14 04:04:58'),
+(551, 'Acesso: validador.index', '[{\"id\":2,\"nome\":\"JUCESE\",\"url\":\"https:\\/\\/www.jucese.se.gov.br\\/\",\"status_code\":\"200\",\"resposta\":\"text\\/html; charset=UTF-8\",\"url_verified_at\":\"2021-11-13 04:28:47\",\"user_id\":1,\"created_at\":\"2021-11-12T15:18:05.000000Z\",\"updated_at\":\"2021-11-13T04:28:47.000000Z\"},{\"id\":4,\"nome\":\"TESTE\",\"url\":\"https:\\/\\/www.php.net\\/manual\\/pt_BR\\/function.curl-setopt.php\",\"status_code\":\"0\",\"resposta\":null,\"url_verified_at\":null,\"user_id\":1,\"created_at\":\"2021-11-13T05:34:08.000000Z\",\"updated_at\":\"2021-11-13T05:34:08.000000Z\"}]', 'index', 1, '2021-11-14 04:05:01', '2021-11-14 04:05:01'),
+(552, 'Acesso: validador.index', '[{\"id\":2,\"nome\":\"JUCESE\",\"url\":\"https:\\/\\/www.jucese.se.gov.br\\/\",\"status_code\":\"200\",\"resposta\":\"text\\/html; charset=UTF-8\",\"url_verified_at\":\"2021-11-13 04:28:47\",\"user_id\":1,\"created_at\":\"2021-11-12T15:18:05.000000Z\",\"updated_at\":\"2021-11-13T04:28:47.000000Z\"},{\"id\":4,\"nome\":\"TESTE\",\"url\":\"https:\\/\\/www.php.net\\/manual\\/pt_BR\\/function.curl-setopt.php\",\"status_code\":\"0\",\"resposta\":null,\"url_verified_at\":null,\"user_id\":1,\"created_at\":\"2021-11-13T05:34:08.000000Z\",\"updated_at\":\"2021-11-13T05:34:08.000000Z\"}]', 'index', 1, '2021-11-14 04:06:14', '2021-11-14 04:06:14');
 
 -- --------------------------------------------------------
 
@@ -484,6 +620,66 @@ INSERT INTO `gruposuser` (`id`, `nome`, `id_rec_red`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Estrutura da tabela `http_status`
+--
+
+CREATE TABLE `http_status` (
+  `status` bigint(20) NOT NULL,
+  `status_description` varchar(255) NOT NULL,
+  `status_type` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Extraindo dados da tabela `http_status`
+--
+
+INSERT INTO `http_status` (`status`, `status_description`, `status_type`) VALUES
+(100, 'Continue', 'Informational'),
+(101, 'Switching Protocols', 'Informational'),
+(200, 'OK', 'Successful'),
+(201, 'Created', 'Successful'),
+(202, 'Accepted', 'Successful'),
+(203, 'Non-Authoritative Information', 'Successful'),
+(204, 'No Content', 'Successful'),
+(205, 'Reset Content', 'Successful'),
+(206, 'Partial Content', 'Successful'),
+(300, 'Multiple Choices', 'Redirection'),
+(301, 'Moved Permanently', 'Redirection'),
+(302, 'Found', 'Redirection'),
+(303, 'See Other', 'Redirection'),
+(304, 'Not Modified', 'Redirection'),
+(305, 'Use Proxy', 'Redirection'),
+(307, 'Temporary Redirect', 'Redirection'),
+(400, 'Bad Request', 'Client Error'),
+(401, 'Unauthorized', 'Client Error'),
+(402, 'Payment Required', 'Client Error'),
+(403, 'Forbidden', 'Client Error'),
+(404, 'Not Found', 'Client Error'),
+(405, 'Method Not Allowed', 'Client Error'),
+(406, 'Not Acceptable', 'Client Error'),
+(407, 'Proxy Authentication Required', 'Client Error'),
+(408, 'Request Timeout', 'Client Error'),
+(409, 'Conflict', 'Client Error'),
+(410, 'Gone', 'Client Error'),
+(411, 'Length Required', 'Client Error'),
+(412, 'Precondition Failed', 'Client Error'),
+(413, 'Request Entity Too Large', 'Client Error'),
+(414, 'Request-URI Too Long', 'Client Error'),
+(415, 'Unsupported Media Type', 'Client Error'),
+(416, 'Requested Range Not Satisfiable', 'Client Error'),
+(417, 'Expectation Failed', 'Client Error'),
+(500, 'Internal Server Error', 'Server Error'),
+(501, 'Not Implemented', 'Server Error'),
+(502, 'Bad Gateway', 'Server Error'),
+(503, 'Service Unavailable', 'Server Error'),
+(504, 'Gateway Timeout', 'Server Error'),
+(505, 'HTTP Version Not Supported', 'Server Error'),
+(0, 'Unknown http status code', 'Unknown http status code'),
+(0, 'Unknown http status code', 'Unknown http status code');
+
+-- --------------------------------------------------------
+
+--
 -- Estrutura da tabela `migrations`
 --
 
@@ -492,62 +688,6 @@ CREATE TABLE `migrations` (
   `migration` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `batch` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
--- --------------------------------------------------------
-
---
--- Estrutura da tabela `municipio`
---
-
-CREATE TABLE `municipio` (
-  `id` int(11) NOT NULL,
-  `uf` varchar(10) NOT NULL,
-  `nome` varchar(255) NOT NULL,
-  `ativo` int(10) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Extraindo dados da tabela `municipio`
---
-
-INSERT INTO `municipio` (`id`, `uf`, `nome`, `ativo`) VALUES
-(1, 'SE', 'Aracaju', 1);
-
--- --------------------------------------------------------
-
---
--- Estrutura da tabela `municipio_permissao`
---
-
-CREATE TABLE `municipio_permissao` (
-  `id` int(11) NOT NULL,
-  `municipio_id` int(11) NOT NULL,
-  `orgao_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
-
---
--- Estrutura da tabela `natureza`
---
-
-CREATE TABLE `natureza` (
-  `id` int(11) NOT NULL,
-  `nome` varchar(255) NOT NULL,
-  `codigo` varchar(10) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
-
---
--- Estrutura da tabela `natureza_permissao`
---
-
-CREATE TABLE `natureza_permissao` (
-  `id` int(11) NOT NULL,
-  `natureza_id` int(11) NOT NULL,
-  `orgao_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -683,8 +823,8 @@ CREATE TABLE `users` (
   `remember_token` varchar(100) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
-  `grupoid` int(11) NOT NULL,
-  `orgaoid` int(11) NOT NULL,
+  `grupoid` int(11) NOT NULL DEFAULT 10,
+  `orgaoid` int(11) NOT NULL DEFAULT 1,
   `ativo` int(11) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -693,8 +833,10 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `cargo`, `email_verified_at`, `password`, `ramal`, `setor_id`, `avatar`, `remember_token`, `created_at`, `updated_at`, `grupoid`, `orgaoid`, `ativo`) VALUES
-(1, 'Andrius Prado Silva', 'andrius.prado@jucese.se.gov.br', 'Programador', NULL, '$2y$10$/0XKh1Vs2/L.L5Ryzf2xrugeL6e6tWAdAYsRXVgzY1RFiU8e1I85u', '4137', 1, 'andrius.prado@jucese.se.gov.br.jpg', NULL, '2019-08-19 18:36:57', '2021-09-03 17:05:58', 10, 1, 1),
-(2, 'Guttemberg Dantas Fernandes', 'guttemberg.dantas@jucese.se.gov.br', 'Programador', NULL, '$2y$10$TQi5/Ox8R/xYYeHpZCjbGewah4PhhhMry3f3uRj639d0N13yvAlgi', '4140', 1, 'guttemberg.dantas@jucese.se.gov.br.jpg', NULL, '2021-09-03 17:35:45', '2021-09-20 15:06:53', 10, 2, 1);
+(1, 'Andrius Prado Silva', 'andrius.prado@jucese.se.gov.br', 'Programador', NULL, '$2y$10$/0XKh1Vs2/L.L5Ryzf2xrugeL6e6tWAdAYsRXVgzY1RFiU8e1I85u', '4137', 1, 'andrius.prado@jucese.se.gov.br.jpg', NULL, '2019-08-19 18:36:57', '2021-11-14 04:04:58', 10, 1, 1),
+(2, 'Guttemberg Dantas Fernandes', 'guttemberg.dantas@jucese.se.gov.br', 'Programador', NULL, '$2y$10$TQi5/Ox8R/xYYeHpZCjbGewah4PhhhMry3f3uRj639d0N13yvAlgi', '4140', 1, 'guttemberg.dantas@jucese.se.gov.br.jpg', NULL, '2021-09-03 17:35:45', '2021-09-20 15:06:53', 10, 2, 1),
+(3, 'Andrius Prado', 'andrius.prado@sead.se.gov.br', NULL, NULL, '$2y$10$PvJNjTZPur/ZUTfZsHve0u9TJXRef6Ab5QJi4QonjRO952iW3gvbS', NULL, NULL, NULL, NULL, '2021-11-13 06:23:27', '2021-11-13 06:23:27', 10, 1, 1),
+(4, 'VICTOR OBERDAN ALVES REZENDE', 'victor.rezende@sead.se.gov.br', NULL, NULL, '$2y$10$IcGxRy.NT8O6rlEXm9R/r.p6Z2vi9ZgtwiiYug80674zHPIMb8DC6', NULL, NULL, NULL, NULL, '2021-11-13 06:26:49', '2021-11-13 06:26:49', 10, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -706,7 +848,7 @@ CREATE TABLE `validador` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `nome` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `url` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `status_code` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `status_code` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT '0',
   `resposta` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `url_verified_at` timestamp NULL DEFAULT NULL,
   `user_id` int(11) NOT NULL,
@@ -719,44 +861,18 @@ CREATE TABLE `validador` (
 --
 
 INSERT INTO `validador` (`id`, `nome`, `url`, `status_code`, `resposta`, `url_verified_at`, `user_id`, `created_at`, `updated_at`) VALUES
-(2, 'JUCESE', 'https://www.jucese.se.gov.br/', NULL, NULL, NULL, 1, '2021-11-12 18:18:05', '2021-11-12 18:18:05'),
-(3, 'JUCESE', 'http://172.23.22.158/novosga/public', NULL, NULL, NULL, 2, '2021-11-12 18:19:22', '2021-11-12 18:19:22');
+(2, 'JUCESE', 'https://www.jucese.se.gov.br/', '200', 'text/html; charset=UTF-8', '2021-11-13 07:28:47', 1, '2021-11-12 18:18:05', '2021-11-13 07:28:47'),
+(3, 'JUCESE', 'https://www.hardware.com.br/comunidade/verificador-links/259442/', '200', 'text/html; charset=UTF-8', '2021-11-13 07:28:48', 2, '2021-11-12 18:19:22', '2021-11-13 07:28:48'),
+(4, 'TESTE', 'https://www.php.net/manual/pt_BR/function.curl-setopt.php', '0', NULL, NULL, 1, '2021-11-13 08:34:08', '2021-11-13 08:34:08');
 
 --
 -- Índices para tabelas despejadas
 --
 
 --
--- Índices para tabela `atividades`
---
-ALTER TABLE `atividades`
-  ADD PRIMARY KEY (`id`);
-
---
--- Índices para tabela `atividades_permissao`
---
-ALTER TABLE `atividades_permissao`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `fk_atividade` (`atividade_id`),
-  ADD KEY `fk_orgao_permissao` (`orgao_id`);
-
---
--- Índices para tabela `consultas_log`
---
-ALTER TABLE `consultas_log`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `fk_user` (`user_id`);
-
---
 -- Índices para tabela `conveniados_logs`
 --
 ALTER TABLE `conveniados_logs`
-  ADD PRIMARY KEY (`id`);
-
---
--- Índices para tabela `download_log`
---
-ALTER TABLE `download_log`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -770,34 +886,6 @@ ALTER TABLE `gruposuser`
 --
 ALTER TABLE `migrations`
   ADD PRIMARY KEY (`id`);
-
---
--- Índices para tabela `municipio`
---
-ALTER TABLE `municipio`
-  ADD PRIMARY KEY (`id`);
-
---
--- Índices para tabela `municipio_permissao`
---
-ALTER TABLE `municipio_permissao`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `fk_municipio` (`municipio_id`),
-  ADD KEY `fk_orgao_municipio` (`orgao_id`);
-
---
--- Índices para tabela `natureza`
---
-ALTER TABLE `natureza`
-  ADD PRIMARY KEY (`id`);
-
---
--- Índices para tabela `natureza_permissao`
---
-ALTER TABLE `natureza_permissao`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `fk_natureza` (`natureza_id`),
-  ADD KEY `fk_orgao_natureza` (`orgao_id`);
 
 --
 -- Índices para tabela `orgao`
@@ -844,34 +932,10 @@ ALTER TABLE `validador`
 --
 
 --
--- AUTO_INCREMENT de tabela `atividades`
---
-ALTER TABLE `atividades`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
---
--- AUTO_INCREMENT de tabela `atividades_permissao`
---
-ALTER TABLE `atividades_permissao`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT de tabela `consultas_log`
---
-ALTER TABLE `consultas_log`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
 -- AUTO_INCREMENT de tabela `conveniados_logs`
 --
 ALTER TABLE `conveniados_logs`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=353;
-
---
--- AUTO_INCREMENT de tabela `download_log`
---
-ALTER TABLE `download_log`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=553;
 
 --
 -- AUTO_INCREMENT de tabela `gruposuser`
@@ -884,30 +948,6 @@ ALTER TABLE `gruposuser`
 --
 ALTER TABLE `migrations`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT de tabela `municipio`
---
-ALTER TABLE `municipio`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
---
--- AUTO_INCREMENT de tabela `municipio_permissao`
---
-ALTER TABLE `municipio_permissao`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT de tabela `natureza`
---
-ALTER TABLE `natureza`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT de tabela `natureza_permissao`
---
-ALTER TABLE `natureza_permissao`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de tabela `orgao`
@@ -937,44 +977,17 @@ ALTER TABLE `setor`
 -- AUTO_INCREMENT de tabela `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de tabela `validador`
 --
 ALTER TABLE `validador`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- Restrições para despejos de tabelas
 --
-
---
--- Limitadores para a tabela `atividades_permissao`
---
-ALTER TABLE `atividades_permissao`
-  ADD CONSTRAINT `fk_atividade` FOREIGN KEY (`atividade_id`) REFERENCES `atividades` (`id`),
-  ADD CONSTRAINT `fk_orgao_permissao` FOREIGN KEY (`orgao_id`) REFERENCES `orgao` (`id`);
-
---
--- Limitadores para a tabela `consultas_log`
---
-ALTER TABLE `consultas_log`
-  ADD CONSTRAINT `fk_user` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);
-
---
--- Limitadores para a tabela `municipio_permissao`
---
-ALTER TABLE `municipio_permissao`
-  ADD CONSTRAINT `fk_municipio` FOREIGN KEY (`municipio_id`) REFERENCES `municipio` (`id`),
-  ADD CONSTRAINT `fk_orgao_municipio` FOREIGN KEY (`orgao_id`) REFERENCES `orgao` (`id`);
-
---
--- Limitadores para a tabela `natureza_permissao`
---
-ALTER TABLE `natureza_permissao`
-  ADD CONSTRAINT `fk_natureza` FOREIGN KEY (`natureza_id`) REFERENCES `natureza` (`id`),
-  ADD CONSTRAINT `fk_orgao_natureza` FOREIGN KEY (`orgao_id`) REFERENCES `orgao` (`id`);
 
 --
 -- Limitadores para a tabela `permissao_grupo`
